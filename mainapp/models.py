@@ -1,6 +1,11 @@
 from django.db import models
 
 # Create your models here.
+class Genre(models.Model):
+    genre_id = models.CharField(max_length=9999)
+    genre_name = models.CharField(max_length=100)
+
+
 class Movie(models.Model):
     movie_id = models.CharField(max_length=9999)
     movie_name = models.CharField(max_length=100)
@@ -26,13 +31,8 @@ class Movie(models.Model):
     movie_findings = models.FloatField()
     #actors = models.
     #produccer
-    movie_genres = models.ManyToManyField(Movie)
+    movie_genres = models.ManyToManyField(Genre)
     #comments
-
-
-class Genre(models.Model):
-    genre_id = models.CharField(max_length=9999)
-    genre_name = models.CharField(max_length=100)
 
 
 class Person(models.Model):
@@ -73,5 +73,5 @@ class Comment(models.Model):
     comment_date = models.DateTimeField()
     #likes
     #dislikes
-    comment_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    comment_user = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    #comment_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    #comment_user = models.ForeignKey(Movie, on_delete=models.CASCADE)
