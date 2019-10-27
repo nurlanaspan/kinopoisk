@@ -28,3 +28,23 @@ class Movie(models.Model):
     #produccer
     #genres
     #comments
+
+
+class Person(models.Model):
+    person_id = models.CharField(max_length=9999)
+    person_name = models.CharField(max_length=100)
+    #person_films = models.
+    person_url_image = models.CharField(max_length=1000)
+    person_rating_av_from_films = models.FloatField()
+    #person_roles_in_film
+
+
+class User(models.Model):
+    user_id = models.CharField(max_length=9999)
+    user_name = models.TextField()
+    user_login = models.TextField()
+    user_login = models.IntegerField()
+    #comments
+    #favarites
+    #watch_later
+    #ratings
