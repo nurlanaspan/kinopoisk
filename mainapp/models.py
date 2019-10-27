@@ -48,3 +48,12 @@ class User(models.Model):
     #favarites
     #watch_later
     #ratings
+
+
+class Comment(models.Model):
+    comment_id = models.CharField(max_length=9999)
+    comment_description = models.TextField()
+    comment_date = models.DateTimeField()
+    #likes
+    #dislikes
+    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
