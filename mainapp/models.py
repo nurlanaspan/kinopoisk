@@ -50,7 +50,7 @@ class Movie(models.Model):
     movie_findings = models.FloatField()
     movie_persons = models.ManyToManyField(Person, through="Person_Movie")
     movie_rated_users = models.ManyToManyField(User, through="Rating")
-    #movie_commented_users = models.ManyToManyField(User, through="Comment")
+    movie_commented_users = models.ManyToManyField(User, through="Comment", related_name="Comments")
     movie_genres = models.ManyToManyField(Genre)
 
 
