@@ -52,6 +52,9 @@ class Movie(models.Model):
     movie_commented_users = models.ManyToManyField(User, through="Comment", related_name="Comments")
     movie_genres = models.ManyToManyField(Genre)
 
+    def __str__(self):
+        return self.movie_name
+
 
 class Person_Movie(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)

@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('pidor/', views.pidor, name='pidor')
+    path('movie/<int:movie_id>', views.movie, name='movie'),
 ]
