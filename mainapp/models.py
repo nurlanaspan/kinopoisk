@@ -2,12 +2,13 @@ from django.db import models
 
 # Create your models here.
 class Genre(models.Model):
-    genre_id = models.CharField(max_length=9999)
     genre_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.genre_name
 
 
 class Person(models.Model):
-    person_id = models.CharField(max_length=9999)
     person_name = models.CharField(max_length=100)
     person_url_image = models.CharField(max_length=1000)
     person_rating_av_from_films = models.FloatField()
@@ -15,7 +16,6 @@ class Person(models.Model):
 
 
 class User(models.Model):
-    user_id = models.CharField(max_length=9999)
     user_name = models.TextField()
     user_login = models.TextField()
     user_login = models.IntegerField()
@@ -26,7 +26,6 @@ class User(models.Model):
 
 
 class Movie(models.Model):
-    movie_id = models.CharField(max_length=9999)
     movie_name = models.CharField(max_length=100)
     movie_desctiption = models.TextField()
     movie_main_rating = models.FloatField()
@@ -61,14 +60,12 @@ class Person_Movie(models.Model):
 
 
 class Rating(models.Model):
-    rating_id = models.CharField(max_length=9999)
     rating_user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     rating_number = models.IntegerField()
 
 
 class Comment(models.Model):
-    comment_id = models.CharField(max_length=9999)
     comment_description = models.TextField()
     comment_date = models.DateTimeField()
     #likes
