@@ -6,8 +6,11 @@ from django.shortcuts import render, get_object_or_404
 
 def index(request):
     movies = Movie.objects.order_by('movie_main_rating')
-
-    return render(request, "mainapp/index.html", {'movies':movies})
+    genres = Genre.objects.all()
+    countries = Country.objects.all()
+    return render(request, "mainapp/index.html", {'movies': movies, 
+                                                  'genres': genres,
+                                                  'countries': countries})
 
 
 def movie(request, movie_id):

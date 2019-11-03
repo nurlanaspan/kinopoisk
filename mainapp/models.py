@@ -8,6 +8,14 @@ class Genre(models.Model):
         return self.genre_name
 
 
+class Country(models.Model):
+    country_name = models.CharField(max_length=100)
+    country_name_russian = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.country_name;
+
+
 class Person(models.Model):
     person_name = models.CharField(max_length=100)
     person_url_image = models.CharField(max_length=1000)
@@ -33,16 +41,7 @@ class Movie(models.Model):
     movie_critics_raing = models.FloatField()
     movie_url_image = models.CharField(max_length=1000)
     movie_url_trailer = models.CharField(max_length=1000)
-    movie_country = models.CharField(
-        max_length=100,
-        choices=[
-            ("KZ", "Kazakhstan"),
-            ("RU", "Russia"),
-            ("USA", "USA"),
-            ("UK", "Unighted Kingdom"),
-            ("China", "China")
-        ]
-    )
+    movie_country = models.ManyToManyField(Country)
     movie_budjet = models.FloatField()
     movie_duration = models.TextField()
     movie_date = models.DateField('Date of Premiere')
