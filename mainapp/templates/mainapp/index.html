@@ -3,19 +3,20 @@
 <html>
 <head>
 <title>KinoPoisk</title>
+{% load static %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content=" Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content=" Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-<link rel="stylesheet" type="text/css" href="css/zoomslider.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
+<link href="{% static 'mainapp/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'mainapp/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'mainapp/css/easy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/zoomslider.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/style.css' %}" />
+<link href="{% static 'mainapp/css/font-awesome.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'mainapp/js/modernizr-2.6.2.min.js' %}"></script>
 <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
@@ -26,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="demo-inner-content">
 		<!--/header-w3l-->
 			   <div class="header-w3-agileits" id="home">
-			     <div class="inner-header-agile">	
+			     <div class="inner-header-agile">
 				<nav class="navbar navbar-default">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -49,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											{% for genre in genres %}
 
 											<li><a href="index.html">{{ genre.genre_name }}</a></li>
-											
+
 											{% endfor %}
 										</ul>
 									</div>
@@ -77,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 
 					</div>
-					<div class="clearfix"> </div>	
+					<div class="clearfix"> </div>
 				</nav>
 					<div class="w3ls_search">
 									<div class="cd-main-header">
@@ -91,11 +92,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</form>
 									</div>
 								</div>
-	
-			</div> 
+
+			</div>
 
 			   </div>
-			
+
 		</div>
     </div>
   <!--/banner-section-->
@@ -111,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 								</ul>
 						</div>
-						 
+
 				</div>
 			</div>
 			<!--//banner-bottom-->
@@ -140,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														</div>
 														<div class="clearfix"></div>
 													</div>
-												
+
 											</form>
 										</div>
 									</div>
@@ -180,19 +181,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- //Modal1 -->
 			<!--/content-inner-section-->
 			<h3 class="agile_w3_title"> <span>Новинки</span></h3>
-			<!--/movies-->				
+			<!--/movies-->
 			<div class="w3_agile_latest_movies">
-			
+
 				<div id="owl-demo" class="owl-carousel owl-theme">
 					{% for movie in movies %}
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
-							<a href="index.html" class="hvr-sweep-to-bottom"><img src="images/m5.jpg" title="KinoPoisk" class="img-responsive" alt=" " />
+							<a href="index.html" class="hvr-sweep-to-bottom"><img src="{% static 'mainapp/images/m5.jpg' %}" title="KinoPoisk" class="img-responsive" alt=" " />
 								<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">{{movie.movie_name}}</a></h6>							
+									<h6><a href="index.html">{{movie.movie_name}}</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -221,7 +222,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Zомбилэнд: Контрольный выстрел</a></h6>							
+									<h6><a href="index.html">Zомбилэнд: Контрольный выстрел</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -249,7 +250,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Сторож</a></h6>							
+									<h6><a href="index.html">Сторож</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -277,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Гемини</a></h6>							
+									<h6><a href="index.html">Гемини</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -305,7 +306,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Малефисента: Владычица тьмы</a></h6>							
+									<h6><a href="index.html">Малефисента: Владычица тьмы</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -333,7 +334,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Окей, Лекси!</a></h6>							
+									<h6><a href="index.html">Окей, Лекси!</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -361,7 +362,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Сельма в городе призраков</a></h6>							
+									<h6><a href="index.html">Сельма в городе призраков</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -389,7 +390,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">movie.movie_name</a></h6>							
+									<h6><a href="index.html">movie.movie_name</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -417,7 +418,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Эверест</a></h6>							
+									<h6><a href="index.html">Эверест</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -438,10 +439,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							</div>
 						</div> -->
-					  
+
 				<!--//movies-->
-				
-					
+
+
 			</div>
 		</div>
 			<h3 class="agile_w3_title"><span>Рекомендации</span> </h3>
@@ -449,12 +450,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="wthree_agile-requested-movies">
 					 				{% for movie in movies %}
 									<div class="col-md-2 w3l-movie-gride-agile requested-movies">
-														<a href="index.html" class="hvr-sweep-to-bottom"><img src="images/m1.jpg" title="Movies Pro" class="img-responsive" alt=" ">
+														<a href="index.html" class="hvr-sweep-to-bottom"><img src="{% static 'mainapp/images/m1.jpg' %}" title="Movies Pro" class="img-responsive" alt=" ">
 															<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 														</a>
 															<div class="mid-1 agileits_w3layouts_mid_1_home">
 																<div class="w3l-movie-text">
-																	<h6><a href="index.html">{{movie.movie_name}}</a></h6>							
+																	<h6><a href="index.html">{{movie.movie_name}}</a></h6>
 																</div>
 																<div class="mid-2 agile_mid_2_home">
 																	<p>2019</p>
@@ -481,7 +482,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Ford против  Ferrari</a></h6>							
+													<h6><a href="index.html">Ford против  Ferrari</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -507,7 +508,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Малифисента: Владычица тьмы</a></h6>							
+													<h6><a href="index.html">Малифисента: Владычица тьмы</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -533,7 +534,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Терминатор: Темные Судьбы </a></h6>							
+													<h6><a href="index.html">Терминатор: Темные Судьбы </a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -559,7 +560,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Джокер	</a></h6>							
+													<h6><a href="index.html">Джокер	</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -585,7 +586,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Zомбилэнд: Контрольный выстрел</a></h6>							
+													<h6><a href="index.html">Zомбилэнд: Контрольный выстрел</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -611,7 +612,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Сторож</a></h6>							
+													<h6><a href="index.html">Сторож</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -637,7 +638,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Гемини</a></h6>							
+													<h6><a href="index.html">Гемини</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -663,7 +664,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Синяя бездна 2</a></h6>							
+													<h6><a href="index.html">Синяя бездна 2</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -689,7 +690,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a>
 											<div class="mid-1 agileits_w3layouts_mid_1_home">
 												<div class="w3l-movie-text">
-													<h6><a href="index.html">Окей, Лекси!</a></h6>							
+													<h6><a href="index.html">Окей, Лекси!</a></h6>
 												</div>
 												<div class="mid-2 agile_mid_2_home">
 													<p>2019</p>
@@ -716,7 +717,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													</a>
 														<div class="mid-1 agileits_w3layouts_mid_1_home">
 															<div class="w3l-movie-text">
-																<h6><a href="index.html">Текст</a></h6>							
+																<h6><a href="index.html">Текст</a></h6>
 															</div>
 															<div class="mid-2 agile_mid_2_home">
 																<p>2019</p>
@@ -742,7 +743,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Ford против  Ferrari</a></h6>							
+												<h6><a href="index.html">Ford против  Ferrari</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -768,7 +769,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Малифисента: Владычица тьмы</a></h6>							
+												<h6><a href="index.html">Малифисента: Владычица тьмы</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -794,7 +795,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Терминатор: Темные Судьбы </a></h6>							
+												<h6><a href="index.html">Терминатор: Темные Судьбы </a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -820,7 +821,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Джокер	</a></h6>							
+												<h6><a href="index.html">Джокер	</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -846,7 +847,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Zомбилэнд: Контрольный выстрел</a></h6>							
+												<h6><a href="index.html">Zомбилэнд: Контрольный выстрел</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -872,7 +873,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Сторож</a></h6>							
+												<h6><a href="index.html">Сторож</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -898,7 +899,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Гемини</a></h6>							
+												<h6><a href="index.html">Гемини</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -924,7 +925,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Синяя бездна 2</a></h6>							
+												<h6><a href="index.html">Синяя бездна 2</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -950,7 +951,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 										<div class="mid-1 agileits_w3layouts_mid_1_home">
 											<div class="w3l-movie-text">
-												<h6><a href="index.html">Окей, Лекси!</a></h6>							
+												<h6><a href="index.html">Окей, Лекси!</a></h6>
 											</div>
 											<div class="mid-2 agile_mid_2_home">
 												<p>2019</p>
@@ -980,15 +981,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="#">1</a></li>
 								<li><a href="#">2</a></li>
 								<li><a href="#">3</a></li>
-								
+
 								<li><a class="last" href="#">Вперед</a></li>
-							</ul>    
-						
+							</ul>
+
 					</div>
-				<!--//tab-section-->	
-				  
+				<!--//tab-section-->
+
 			<!--//content-inner-section-->
-		
+
 	<!--/footer-bottom-->
 		<div class="contact-w3ls" id="contact">
 			<div class="footer-w3lagile-inner">
@@ -1002,13 +1003,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="footer-grids w3-agileits">
 						<div class="col-md-2 footer-grid">
 						<h4>Релизы</h4>
-							<ul> 
-								<li><a href="#" title="Release 2016">2019</a></li> 
+							<ul>
+								<li><a href="#" title="Release 2016">2019</a></li>
 								<li><a href="#" title="Release 2015">2018</a></li>
-								<li><a href="#" title="Release 2014">2017</a></li> 
-								<li><a href="#" title="Release 2013">2016</a></li> 
+								<li><a href="#" title="Release 2014">2017</a></li>
+								<li><a href="#" title="Release 2013">2016</a></li>
 								<li><a href="#" title="Release 2012">2015</a></li>
-								<li><a href="#" title="Release 2011">2014</a></li> 
+								<li><a href="#" title="Release 2011">2014</a></li>
 							</ul>
 						</div>
 							<div class="col-md-2 footer-grid">
@@ -1019,7 +1020,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								{% endfor %}
 							</ul>
 						</div>
-				
+
 
 							<div class="col-md-2 footer-grid">
 								<h4>Обзор фильмов</h4>
@@ -1033,25 +1034,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h4>Новинки</h4>
 							<div class="footer-grid1">
 								<div class="footer-grid1-left">
-									<a href="index.html"><img src="images/m1.jpg" alt=" " class="img-responsive"></a>
+									<a href="index.html"><img src="{% static 'mainapp/images/m1.jpg' %}" alt=" " class="img-responsive"></a>
 								</div>
 								<div class="footer-grid1-right">
 									<a href="index.html">Текст</a>
-									
+
 								</div>
 								<div class="clearfix"> </div>
 							</div>
 							<div class="footer-grid1">
 								<div class="footer-grid1-left">
-									<a href="index.html"><img src="images/m2.jpg" alt=" " class="img-responsive"></a>
+									<a href="index.html"><img src="{% static 'mainapp/images/m2.jpg' %}" alt=" " class="img-responsive"></a>
 								</div>
 								<div class="footer-grid1-right">
 									<a href="index.html">Ford против Ferrari</a>
-									
+
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-							
+
 
 
 						</div>
@@ -1059,26 +1060,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h4>Скоро в кино</h4>
 								<div class="footer-grid1">
 									<div class="footer-grid1-left">
-										<a href="index.html"><img src="images/m3.jpg" alt=" " class="img-responsive"></a>
+										<a href="index.html"><img src="{% static 'mainapp/images/m3.jpg' %}" alt=" " class="img-responsive"></a>
 									</div>
 									<div class="footer-grid1-right">
 										<a href="index.html">Малифисента: Владычица тьмы</a>
-										
+
 									</div>
 									<div class="clearfix"> </div>
 								</div>
 								<div class="footer-grid1">
 									<div class="footer-grid1-left">
-										<a href="index.html"><img src="images/m4.jpg" alt=" " class="img-responsive"></a>
+										<a href="index.html"><img src="{% static 'images/m4.jpg' %}" alt=" " class="img-responsive"></a>
 									</div>
 									<div class="footer-grid1-right">
 										<a href="index.html">Терминатор: Темные судьбы</a>
-										
+
 									</div>
 									<div class="clearfix"> </div>
 							<div class="clearfix"> </div>
 						</div>
-						
+
 					</div>
 					<h3 class="text-center follow">Присоединяйтесь к нам</h3>
 						<ul class="social-icons1 agileinfo">
@@ -1086,28 +1087,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#"><i class="fa fa-youtube"></i></a></li>
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						</ul>	
-					
+						</ul>
+
 			 </div>
-						
+
 			</div>
 			<div class="w3agile_footer_copy">
 				    <p>© 2019 KinoPoisk. Все права защищены | Сделано командой "TMNT"</p>
 			</div>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
-<script src="js/jquery-1.11.1.min.js"></script>
+<script src="{% static 'mainapp/js/jquery-1.11.1.min.js' %}"></script>
 	<!-- Dropdown-Menu-JavaScript -->
 			<script>
 				$(document).ready(function(){
-					$(".dropdown").hover(            
+					$(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).stop( true, true ).slideDown("fast");
-							$(this).toggleClass('open');        
+							$(this).toggleClass('open');
 						},
 						function() {
 							$('.dropdown-menu', this).stop( true, true ).slideUp("fast");
-							$(this).toggleClass('open');       
+							$(this).toggleClass('open');
 						}
 					);
 				});
@@ -1115,10 +1116,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!-- //Dropdown-Menu-JavaScript -->
 
 
-<script type="text/javascript" src="js/jquery.zoomslider.min.js"></script>
+<script type="text/javascript" src="{% static 'mainapp/js/jquery.zoomslider.min.js' %}"></script>
 		<!-- search-jQuery -->
-				<script src="js/main.js"></script>
-			<script src="js/simplePlayer.js"></script>
+				<script src="{% static 'mainapp/js/main.js' %}"></script>
+			<script src="{% static 'mainapp/js/simplePlayer.js' %}"></script>
 			<script>
 				$("document").ready(function() {
 					$("#video").simplePlayer();
@@ -1140,8 +1141,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			</script>
 
-			<!-- pop-up-box -->  
-		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+			<!-- pop-up-box -->
+		<script src="{% static 'mainapp/js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
 	<!--//pop-up-box -->
 
 			<div id="small-dialog1" class="mfp-hide">
@@ -1163,14 +1164,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			removalDelay: 300,
 			mainClass: 'my-mfp-zoom-in'
 		});
-																		
+
 		});
 	</script>
-<script src="js/easy-responsive-tabs.js"></script>
+<script src="{% static 'mainapp/js/easy-responsive-tabs.js' %}"></script>
 <script>
 $(document).ready(function () {
 $('#horizontalTab').easyResponsiveTabs({
-type: 'default', //Types: default, vertical, accordion           
+type: 'default', //Types: default, vertical, accordion
 width: 'auto', //auto or any width like 600px
 fit: true,   // 100% fit in a container
 closed: 'accordion', // Start closed if in accordion view
@@ -1189,12 +1190,12 @@ fit: true
 });
 });
 </script>
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
-<script src="js/owl.carousel.js"></script>
+<link href="{% static 'mainapp/css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all">
+<script src="{% static 'mainapp/js/owl.carousel.js' %}"></script>
 <script>
-	$(document).ready(function() { 
+	$(document).ready(function() {
 		$("#owl-demo").owlCarousel({
-	 
+
 		 autoPlay: 3000, //Set AutoPlay to 3 seconds
 		  autoPlay : true,
 		   navigation :true,
@@ -1202,19 +1203,19 @@ fit: true
 		  items : 5,
 		  itemsDesktop : [640,4],
 		  itemsDesktopSmall : [414,3]
-	 
+
 		});
-	 
-	}); 
-</script> 
+
+	});
+</script>
 
 <!--/script-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="{% static 'mainapp/js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'mainapp/js/easing.js' %}"></script>
 
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
+				$(".scroll").click(function(event){
 					event.preventDefault();
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
@@ -1227,18 +1228,18 @@ fit: true
 					  			containerID: 'toTop', // fading element id
 								containerHoverID: 'toTopHover', // fading element hover id
 								scrollSpeed: 1200,
-								easingType: 'linear' 
+								easingType: 'linear'
 					 		};
 							*/
-							
+
 							$().UItoTop({ easingType: 'easeOutQuart' });
-							
+
 						});
 					</script>
 <!--end-smooth-scrolling-->
-	<script src="js/bootstrap.js"></script>
+	<script src="{% static 'mainapp/js/bootstrap.js' %}"></script>
 
- 
+
 
 </body>
 </html>
