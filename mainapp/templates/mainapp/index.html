@@ -184,6 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3_agile_latest_movies">
 			
 				<div id="owl-demo" class="owl-carousel owl-theme">
+					{% for movie in movies %}
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
 							<a href="index.html" class="hvr-sweep-to-bottom"><img src="images/m5.jpg" title="KinoPoisk" class="img-responsive" alt=" " />
@@ -191,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Джокер	</a></h6>							
+									<h6><a href="index.html">{{movie.movie_name}}</a></h6>							
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -212,7 +213,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="item">
+					{% endfor %}
+					<!-- <div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
 							<a href="index.html" class="hvr-sweep-to-bottom"><img src="images/m6.jpg" title="KinoPoisk " class="img-responsive" alt=" " />
 								<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
@@ -387,7 +389,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="index.html">Три секунды</a></h6>							
+									<h6><a href="index.html">movie.movie_name</a></h6>							
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>2019</p>
@@ -435,7 +437,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p>NEW</p>
 							</div>
 							</div>
-						</div>
+						</div> -->
 					  
 				<!--//movies-->
 				
@@ -445,13 +447,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h3 class="agile_w3_title"><span>Рекомендации</span> </h3>
 			<!--/requested-movies-->
 				 <div class="wthree_agile-requested-movies">
+					 				{% for movie in movies %}
 									<div class="col-md-2 w3l-movie-gride-agile requested-movies">
 														<a href="index.html" class="hvr-sweep-to-bottom"><img src="images/m1.jpg" title="Movies Pro" class="img-responsive" alt=" ">
 															<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 														</a>
 															<div class="mid-1 agileits_w3layouts_mid_1_home">
 																<div class="w3l-movie-text">
-																	<h6><a href="index.html">Текст</a></h6>							
+																	<h6><a href="index.html">{{movie.movie_name}}</a></h6>							
 																</div>
 																<div class="mid-2 agile_mid_2_home">
 																	<p>2019</p>
@@ -470,8 +473,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<div class="ribben one">
 															<p>NEW</p>
 														</div>
-												</div>
-										<div class="col-md-2 w3l-movie-gride-agile requested-movies">
+									</div>
+									{% endfor %}
+										<!-- <div class="col-md-2 w3l-movie-gride-agile requested-movies">
 											<a href="index.html" class="hvr-sweep-to-bottom"><img src="images/m2.jpg" title="KinoPoisk" class="img-responsive" alt=" ">
 												<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 											</a>
@@ -967,7 +971,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												</div>
 											</div>
 												<div class="clearfix"></div>
-						</div>
+						</div> -->
 					</div>
 			<!--//requested-movies-->
 				  <div class="blog-pagenat-wthree">
@@ -1010,14 +1014,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="col-md-2 footer-grid">
 						<h4>Фильмы</h4>
 							<ul>
-								
-								<li><a href="index.html">Приключения</a></li>
-								<li><a href="index.html">Комедия</a></li>
-								<li><a href="index.html">Фэнтези</a></li>
-								<li><a href="index.html">Боевики </a></li>
-								<li><a href="index.html">Драмы </a></li>
-								<li><a href="index.html">Ужасы  </a></li>
-								
+								{% for genre in genres %}
+								<li><a href="index.html">{{genre.genre_name}}</a></li>
+								{% endfor %}
 							</ul>
 						</div>
 				
@@ -1025,22 +1024,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="col-md-2 footer-grid">
 								<h4>Обзор фильмов</h4>
 									<ul class="w3-tag2">
-									<li><a href="index.html">Комедии</a></li>
-									<li><a href="index.html">Ужасы</a></li>
-									<li><a href="index.html">Исторические</a></li>
-									<li><a href="index.html">Романтичные</a></li>
-									<li><a href="index.html">Боевики</a></li>
-									<li><a href="index.html">Биографии</a></li>
-									<li><a href="index.html">Фантастика</a></li>
-									<li><a href="index.html">Детективы</a></li>
-									<li><a href="index.html">Детские</a></li>
-									<li><a href="index.html">Мелодрамы</a></li>
-									<li><a href="index.html">Драмы</a></li>
-									<li><a href="index.html">Мультфильмы</a></li>
-									
+											{% for genre in genres %}
+											<li><a href="index.html">{{genre.genre_name}}</a></li>
+											{% endfor %}
 								</ul>
-
-
 						</div>
 								<div class="col-md-2 footer-grid">
 						<h4>Новинки</h4>
