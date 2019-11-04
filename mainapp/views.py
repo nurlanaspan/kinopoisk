@@ -8,9 +8,11 @@ def index(request):
     movies = Movie.objects.order_by('movie_main_rating')
     genres = Genre.objects.all()
     countries = Country.objects.all()
+    new_movies = Movie.objects.order_by('movie_date')[:2]
     return render(request, "mainapp/index.html", {'movies': movies, 
                                                   'genres': genres,
-                                                  'countries': countries})
+                                                  'countries': countries,
+                                                  'new_movies': new_movies})
 
 
 def movie(request, movie_id):
