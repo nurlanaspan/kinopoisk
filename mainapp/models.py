@@ -24,9 +24,10 @@ class Person(models.Model):
 
 
 class User(models.Model):
-    user_name = models.TextField()
-    user_login = models.TextField()
-    user_login = models.IntegerField()
+    user_name = models.CharField(max_length=64)
+    user_surname = models.CharField(max_length=64, default="UNKNOWN")
+    user_login = models.CharField(max_length=64)
+    user_password = models.CharField(max_length=64, default="qwe123ASD")
     #comments
     #favarites
     #watch_later
