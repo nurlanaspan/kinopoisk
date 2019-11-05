@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<input name="Search" type="search" placeholder="Поиск...">
 										</form>
 									</div>
-								</div>
+					</div>
 
 			</div>
 
@@ -115,6 +115,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<input type="submit" value="Выход" style="background: black">
 										</form>
 									</li>
+									<li>
+										<h2>{{user.user_name}}</h2>
+									</li>
 									{% else %}
 									<li><a href="#" class="login"  data-toggle="modal" data-target="#myModal4">Логин</a></li>
 									<li><a href="#" class="login reg"  data-toggle="modal" data-target="#myModal5">Регистрация</a></li>
@@ -136,9 +139,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h4>Логин</h4>
 										<div class="login-form">
-											<form action="#" method="post">
-												<input type="email" name="email" placeholder="Электронная адрес или телефон" required="">
-												<input type="password" name="password" placeholder="Пароль" required="">
+											<form action="#" method="POST">
+												{% csrf_token %}
+												<input type="text" name="user_login" placeholder="Логин" required="">
+												<input type="password" name="user_password" placeholder="Пароль" required="">
+												<input type="hidden" name="login_performed" value="yes">
 												<div class="tp">
 													<input type="submit" value="Войти">
 												</div>

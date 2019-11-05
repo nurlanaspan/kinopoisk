@@ -33,6 +33,18 @@ def index(request):
 
     if request.method == 'POST':
         try:
+            # checking if login was perfomed
+            try:
+                login_performed = request.POST['login_performed']
+                user_login = request.POST['user_login']
+                user_password = request.POST['user_password']
+                user = User.objects.get(user_login=user_login)
+                if user and user_password == user.user_password:
+                    request.session['user_id'] = user.id;
+                    context['user'] = user
+                    return render(request, "mainapp/index.html", context)
+            except:
+                pass
             user_name = request.POST['name']
             user_surname = request.POST['surname']
             user_login = request.POST['login']
