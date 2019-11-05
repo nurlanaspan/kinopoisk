@@ -87,8 +87,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</ul> <!-- cd-header-buttons -->
 									</div>
 									<div id="cd-search" class="cd-search">
-										<form action="#" method="post">
-											<input name="Search" type="search" placeholder="Поиск...">
+										<form action="{% url 'mainapp:search' %}" method="post">
+											{% csrf_token %}
+											<input name="searched_text" type="search" placeholder="Поиск..." required>
 										</form>
 									</div>
 					</div>

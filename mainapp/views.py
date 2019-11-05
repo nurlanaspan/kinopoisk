@@ -68,4 +68,17 @@ def movie(request, movie_id):
 
     return render(request, "mainapp/movie.html", {'movie': moviex})
 
+
+def search(request):
+    try:
+        searched_text = request.POST['searched_text'].lower()
+        found_movies = []
+        movies = Movie.objects.all()
+        for movie in movies:
+            if movie.movie_name.lower().count(searched_text) > 0 or movie.movie_desctiption.lower().count(searched_text) > 0:
+                found_movies.append(movie)
+        return render(request, "mainapp/search.html", {'found_movies': found_movies})
+    except:
+        pass
+
 # Create your views here.

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KinoPoisk</title>
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content=" Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="{% static 'mainapp/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'mainapp/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'mainapp/css/easy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/zoomslider.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/style.css' %}" />
+<link href="{% static 'mainapp/css/font-awesome.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'mainapp/js/modernizr-2.6.2.min.js' %}"></script>
+<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    {% if found_movies %}
+    <h3 class="agile_w3_title"> <span>Найденные фильмы</span></h3>
+    <div class="w3_agile_latest_movies">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                {% for movie in found_movies %}
+                <div class="item">
+                    <div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
+                        <a href="index.html" class="hvr-sweep-to-bottom"><img src="{% static movie.movie_url_image %}" title="KinoPoisk" class="img-responsive" alt=" " />
+                            <div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+                        </a>
+                        <div class="mid-1 agileits_w3layouts_mid_1_home">
+                            <div class="w3l-movie-text">
+                                <h6><a href="index.html">{{movie.movie_name}}</a></h6>
+                            </div>
+                            <div class="mid-2 agile_mid_2_home">
+                                <p>2019</p>
+                                <div class="block-stars">
+                                    <ul class="w3l-ratings">
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="ribben one">
+                            <p>NEW</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+    {% else %}
+    <h3 class="agile_w3_title"> <span>По вашему запросу ничего не найдено</span></h3>
+    {% endif %}
+</body>
