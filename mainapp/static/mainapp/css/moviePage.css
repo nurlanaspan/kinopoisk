@@ -1,0 +1,101 @@
+#wrapper {
+    width: 800px;
+    height: 1400px;
+    //outline: 1px solid red;
+    padding: 1px 10px;
+    margin: 25px auto;
+    background-color: #0C0D0D;
+}
+#movieTitle {
+	width: 800px;
+	height: 30px;
+	//outline: 1px solid green;
+    padding-top: 10px;
+	margin-left: 10px;
+	//padding: 0px 20px;
+}
+#movieContent {
+	width: 800px;
+	//height: 950px;
+	//outline: 1px solid green;
+	padding: 0 1px;
+}
+#moviePhoto {
+	width: 283px;
+	height: 390px;
+	//outline: 1px solid black;
+	float: left;
+}
+#movieDescription {
+	width: 512px;
+	//height: 390px;
+	//outline: 1px solid yellow;
+	margin-left: 285px;
+	padding: 10px;
+}
+#movieCast {
+	width: 800px;
+	height: 120px;
+	//outline: 1px solid black;
+}
+#movieTrailer {
+	width: 800px;
+	height: 400px;
+	//outline: 1px solid blue;
+	padding-left: 15px;
+}
+#movieReview {
+	width: 800px;
+	height: 280px;
+	//outline: 1px solid purple;
+}
+#desc {
+	line-height: 15px;
+	//outline: 1px solid red;
+	margin-bottom: 1px;
+}
+textarea {
+	margin-left: 30px;
+}
+#buttons {
+	margin-left: 35px;
+}
+p {
+	color: white;
+	font-size: 0.9em;
+	padding: 1em 0.7em;
+	position: relative;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+h2 {
+	color: white;
+	font-size: 0.9em;
+	//padding: 1em 0.7em;
+	//position: relative;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+textarea {
+	font-size: 0.9em;
+	padding: 1em 0.7em;
+	position: relative;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    background-color: #0C0D0D;
+    color: white;
+    border-radius: 7px;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+a:hover {
+	color: yellow;
+}

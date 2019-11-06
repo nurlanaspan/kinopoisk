@@ -65,11 +65,25 @@ def index(request):
 
 def movie(request, movie_id):
     moviex = get_object_or_404(Movie, pk=movie_id)
-
-    return render(request, "mainapp/movie.html", {'movie': moviex})
+    genres = moviex.movie_genres.all()
+    context = {'movie': moviex, 'genres': genres, 'user': None}
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+        context['user'] = user
+        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+    except:
+        pass
+    print(context)
+    return render(request, "mainapp/movie.html", context)
 
 
 def search(request):
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+    except:
+        pass
     try:
         searched_text = request.POST['searched_text'].lower()
         found_movies = []
@@ -77,7 +91,7 @@ def search(request):
         for movie in movies:
             if movie.movie_name.lower().count(searched_text) > 0 or movie.movie_desctiption.lower().count(searched_text) > 0:
                 found_movies.append(movie)
-        return render(request, "mainapp/search.html", {'found_movies': found_movies})
+        return render(request, "mainapp/search.html", {'found_movies': found_movies, 'user': user})
     except:
         pass
 
