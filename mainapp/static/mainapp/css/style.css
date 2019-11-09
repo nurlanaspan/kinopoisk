@@ -119,6 +119,14 @@ input[type="submit"],.w3l_header_left ul li a,.related-post-right h4 a,.comments
 	    line-height: 78px;
 		    font-weight: bold;
 }
+#exitsubmit{
+	background: black; 
+	border: 0; 
+	padding: 5px 10px; 
+	border-radius: 5%; 
+	margin-left: 25px; 
+	margin-right: 25px;
+}
 h1 span {
        color: #02a388;
     font-size: 1.5em;

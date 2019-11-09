@@ -14,52 +14,113 @@ def index(request):
                'countries': countries,
                'new_movies': new_movies,
                'user': None}
+    return render(request, "mainapp/index.html", context)
+    # try:
+    #     if request.session['user_id']:
+    #         try:
+    #             exit_performed = request.POST['exit']
+    #             if exit_performed == 'yes':
+    #                 print('exit was performed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    #                 del request.session['user_id']
+    #             return render(request, "mainapp/index.html", context)
+    #         except:
+    #             pass
+    #         user = User.objects.get(pk=request.session['user_id'])
+    #         context['user'] = user
+    #         return render(request, "mainapp/index.html", context)
+    # except:
+    #     pass
 
+    # if request.method == 'POST':
+    #     try:
+    #         # checking if login was perfomed
+    #         try:
+    #             login_performed = request.POST['login_performed']
+    #             user_login = request.POST['user_login']
+    #             user_password = request.POST['user_password']
+    #             user = User.objects.get(user_login=user_login)
+    #             if user and user_password == user.user_password:
+    #                 request.session['user_id'] = user.id;
+    #                 context['user'] = user
+    #                 return render(request, "mainapp/index.html", context)
+    #         except:
+    #             pass
+    #         user_name = request.POST['name']
+    #         user_surname = request.POST['surname']
+    #         user_login = request.POST['login']
+    #         user_password = request.POST['password']
+    #         user = User(user_name=user_name, user_surname=user_surname, user_login=user_login, user_password=user_password)
+    #         user.save()
+    #         request.session['user_id'] = user.id
+    #         context['user'] = user
+    #         return render(request, "mainapp/index.html", context)
+    #         # return HttpResponseRedirect("mainapp/index.html", {'movies': movies, 'genres': genres, 'countries': countries, 'new_movies': new_movies}, 
+    #         #     context_instance=RequestContext(request))
+    #     except:
+    #         registration_error='error'
+    #         return render(request, "mainapp/index.html", context)
+    
+
+def registration(request):
+    movies = Movie.objects.order_by('movie_main_rating')
+    genres = Genre.objects.all()
+    countries = Country.objects.all()
+    new_movies = Movie.objects.order_by('movie_date')[:2]
+    context = {'movies': movies, 
+               'genres': genres,
+               'countries': countries,
+               'new_movies': new_movies,
+               'user': None}
     try:
-        if request.session['user_id']:
-            try:
-                exit_performed = request.POST['exit']
-                if exit_performed == 'yes':
-                    print('exit was performed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                    del request.session['user_id']
-                return render(request, "mainapp/index.html", context)
-            except:
-                pass
-            user = User.objects.get(pk=request.session['user_id'])
-            context['user'] = user
-            return render(request, "mainapp/index.html", context)
+        user_name = request.POST['name']
+        user_surname = request.POST['surname']
+        user_login = request.POST['login']
+        user_password = request.POST['password']
+        user = User(user_name=user_name, user_surname=user_surname, user_login=user_login, user_password=user_password)
+        user.save()
+        request.session['user_id'] = user.id
     except:
         pass
+    return render(request, "mainapp/index.html", context)
 
-    if request.method == 'POST':
-        try:
-            # checking if login was perfomed
-            try:
-                login_performed = request.POST['login_performed']
-                user_login = request.POST['user_login']
-                user_password = request.POST['user_password']
-                user = User.objects.get(user_login=user_login)
-                if user and user_password == user.user_password:
-                    request.session['user_id'] = user.id;
-                    context['user'] = user
-                    return render(request, "mainapp/index.html", context)
-            except:
-                pass
-            user_name = request.POST['name']
-            user_surname = request.POST['surname']
-            user_login = request.POST['login']
-            user_password = request.POST['password']
-            user = User(user_name=user_name, user_surname=user_surname, user_login=user_login, user_password=user_password)
-            user.save()
-            request.session['user_id'] = user.id
+
+def authentication(request):
+    movies = Movie.objects.order_by('movie_main_rating')
+    genres = Genre.objects.all()
+    countries = Country.objects.all()
+    new_movies = Movie.objects.order_by('movie_date')[:2]
+    context = {'movies': movies, 
+               'genres': genres,
+               'countries': countries,
+               'new_movies': new_movies,
+               'user': None}
+    try:
+        user_login = request.POST['user_login']
+        user_password = request.POST['user_password']
+        user = User.objects.get(user_login=user_login)
+        if user and user_password == user.user_password:
+            request.session['user_id'] = user.id;
             context['user'] = user
-            return render(request, "mainapp/index.html", context)
-            # return HttpResponseRedirect("mainapp/index.html", {'movies': movies, 'genres': genres, 'countries': countries, 'new_movies': new_movies}, 
-            #     context_instance=RequestContext(request))
-        except:
-            registration_error='error'
-            return render(request, "mainapp/index.html", context)
+    except:
+        pass
+    return render(request, "mainapp/index.html", context)
 
+
+def exit_from_account(request):
+    movies = Movie.objects.order_by('movie_main_rating')
+    genres = Genre.objects.all()
+    countries = Country.objects.all()
+    new_movies = Movie.objects.order_by('movie_date')[:2]
+    context = {'movies': movies, 
+               'genres': genres,
+               'countries': countries,
+               'new_movies': new_movies,
+               'user': None}
+    try:
+        if request.session['user_id']:
+            del request.session['user_id']
+    except:
+        pass
     return render(request, "mainapp/index.html", context)
 
 
