@@ -210,7 +210,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p>
 							<strong>Название: </strong>{{ movie.movie_name }}<br>
 							<strong>Год выпуска: </strong><a href="#">{{movie.movie_date}}</a><br>
-							<strong>Страна: </strong><a href="#">{{movie.movie_country}}</a><br>
+							<strong>Страна: </strong>
+							{%for country in countries %}
+							<a href="#">{{country.country_name_russian}}</a>
+							{% endfor %}
+							<br>
 							<strong>Жанр: </strong>
 							{% for genre in genres %}
 							<a href="#">{{genre.genre_name}}</a>
@@ -241,6 +245,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</form>
 					</div>
 					</div>
+				</div>
+				<div>
+
 				</div>
 			</body>
 			</html>

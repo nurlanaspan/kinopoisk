@@ -141,7 +141,8 @@ def exit_from_account(request):
 def movie(request, movie_id):
     moviex = get_object_or_404(Movie, pk=movie_id)
     genres = moviex.movie_genres.all()
-    context = {'movie': moviex, 'genres': genres, 'user': None}
+    countries = moviex.movie_country.all()
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'user': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
