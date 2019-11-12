@@ -28,6 +28,9 @@ class User(models.Model):
     user_surname = models.CharField(max_length=64, default="UNKNOWN")
     user_login = models.CharField(max_length=64)
     user_password = models.CharField(max_length=64, default="qwe123ASD")
+    user_url_image = models.CharField(max_length=1000, default='mainapp\images\defaultuser.png')
+    user_role = models.CharField(max_length=32, default='user')
+
     #comments
     #favarites
     #watch_later

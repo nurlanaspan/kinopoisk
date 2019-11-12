@@ -9,7 +9,7 @@ def index(request):
     genres = Genre.objects.all()
     countries = Country.objects.all()
     new_movies = Movie.objects.order_by('movie_date')[:2]
-    context = {'movies': movies, 
+    context = {'movies': movies,
                'genres': genres,
                'countries': countries,
                'new_movies': new_movies,
@@ -59,19 +59,19 @@ def index(request):
     #         request.session['user_id'] = user.id
     #         context['user'] = user
     #         return render(request, "mainapp/index.html", context)
-    #         # return HttpResponseRedirect("mainapp/index.html", {'movies': movies, 'genres': genres, 'countries': countries, 'new_movies': new_movies}, 
+    #         # return HttpResponseRedirect("mainapp/index.html", {'movies': movies, 'genres': genres, 'countries': countries, 'new_movies': new_movies},
     #         #     context_instance=RequestContext(request))
     #     except:
     #         registration_error='error'
     #         return render(request, "mainapp/index.html", context)
-    
+
 
 def registration(request):
     movies = Movie.objects.order_by('movie_main_rating')
     genres = Genre.objects.all()
     countries = Country.objects.all()
     new_movies = Movie.objects.order_by('movie_date')[:2]
-    context = {'movies': movies, 
+    context = {'movies': movies,
                'genres': genres,
                'countries': countries,
                'new_movies': new_movies,
@@ -94,7 +94,7 @@ def authentication(request):
     genres = Genre.objects.all()
     countries = Country.objects.all()
     new_movies = Movie.objects.order_by('movie_date')[:2]
-    context = {'movies': movies, 
+    context = {'movies': movies,
                'genres': genres,
                'countries': countries,
                'new_movies': new_movies,
@@ -116,7 +116,7 @@ def exit_from_account(request):
     genres = Genre.objects.all()
     countries = Country.objects.all()
     new_movies = Movie.objects.order_by('movie_date')[:2]
-    context = {'movies': movies, 
+    context = {'movies': movies,
                'genres': genres,
                'countries': countries,
                'new_movies': new_movies,
@@ -166,8 +166,21 @@ def post_comment(request):
     user = None
     try:
         comment_text = request.POST['comment_text']
-        
+
     except:
         pass
+
+def user(request, userx_id):
+    userx = get_object_or_404(User, pk=userx_id)
+    context = {'userx': userx, 'user': None}
+
+    try:
+        user = User.object.get(pk=request.session['user_id'])
+        context['user'] = user
+    except:
+        pass
+    return render(request, "mainapp/user.html", context)
+
+
 
 # Create your views here.
