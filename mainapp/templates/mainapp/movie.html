@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><i class="fa fa-phone" aria-hidden="true"></i> +7-(777)-77-77</li>
 									{% if user %}
 									<li>
-										<form action="{% url 'mainapp:index' %}" method="POST">
+										<form action="{% url 'mainapp:exit_from_account' %}" method="POST">
 											{% csrf_token %}
 											<input type="hidden" name="exit" value="yes">
 											<input type="submit" value="Выход" style="background: black">
@@ -124,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="#" class="login"  data-toggle="modal" data-target="#myModal4">Логин</a></li>
 									<li><a href="#" class="login reg"  data-toggle="modal" data-target="#myModal5">Регистрация</a></li>
 									{% endif %}
-									
+
 								</ul>
 						</div>
 
@@ -245,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</body>
 			</html>
 			<!--//requested-movies-->
-				 
+
 				<!--//tab-section-->
 
 			<!--//content-inner-section-->
