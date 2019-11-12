@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse, Http404
-from .models import *
 from django.shortcuts import render, get_object_or_404
+from django.shortcuts import HttpResponseRedirect
+from django.urls import reverse
+import datetime
+
+from .models import *
 
 
 def index(request):
@@ -77,6 +79,12 @@ def registration(request):
                'new_movies': new_movies,
                'user': None}
     try:
+        user = User.objects.get(pk=request.session['user_id'])
+        context['user'] = user
+        return render(request, "mainapp/index.html", context)
+    except:
+        pass
+    try:
         user_name = request.POST['name']
         user_surname = request.POST['surname']
         user_login = request.POST['login']
@@ -84,6 +92,7 @@ def registration(request):
         user = User(user_name=user_name, user_surname=user_surname, user_login=user_login, user_password=user_password)
         user.save()
         request.session['user_id'] = user.id
+        context['user'] = user
     except:
         pass
     return render(request, "mainapp/index.html", context)
@@ -104,7 +113,7 @@ def authentication(request):
         user_password = request.POST['user_password']
         user = User.objects.get(user_login=user_login)
         if user and user_password == user.user_password:
-            request.session['user_id'] = user.id;
+            request.session['user_id'] = user.id
             context['user'] = user
     except:
         pass
@@ -164,10 +173,19 @@ def search(request):
 
 def post_comment(request):
     user = None
+    moviex = get_object_or_404(Movie, pk=request.POST['movie_id'])
+    genres = moviex.movie_genres.all()
+    context = {'movie': moviex, 'genres': genres, 'user': None}
     try:
-        comment_text = request.POST['comment_text']
-        
+        user = User.objects.get(pk=request.session['user_id'])
+        moviex = Movie.objects.get(pk=request.POST['movie_id'])
+        if user:
+            comment_text = request.POST['comment_text']
+            comment = Comment(comment_description=comment_text, comment_date=datetime.datetime.now(),
+                              comment_movie=moviex, comment_user=user)
+            comment.save()
+        context['user'] = user
     except:
         pass
-
+    return HttpResponseRedirect(reverse('mainapp:movie', args=(moviex.id, )))
 # Create your views here.

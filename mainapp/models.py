@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class Genre(models.Model):
     genre_name = models.CharField(max_length=100)
 
@@ -13,14 +13,14 @@ class Country(models.Model):
     country_name_russian = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.country_name;
+        return self.country_name
 
 
 class Person(models.Model):
     person_name = models.CharField(max_length=100)
     person_url_image = models.CharField(max_length=1000)
     person_rating_av_from_films = models.FloatField()
-    #person_roles_in_film
+    # person_roles_in_film
 
 
 class User(models.Model):
@@ -28,10 +28,10 @@ class User(models.Model):
     user_surname = models.CharField(max_length=64, default="UNKNOWN")
     user_login = models.CharField(max_length=64)
     user_password = models.CharField(max_length=64, default="qwe123ASD")
-    #comments
-    #favarites
-    #watch_later
-    #ratings
+    # comments
+    # favorites
+    # watch_later
+    # ratings
 
 
 class Movie(models.Model):
@@ -47,7 +47,7 @@ class Movie(models.Model):
     movie_duration = models.TextField()
     movie_date = models.DateField('Date of Premiere')
     movie_findings = models.FloatField()
-    movie_persons = models.ManyToManyField(Person, through="Person_Movie")
+    movie_persons = models.ManyToManyField(Person, through="PersonMovie")
     movie_rated_users = models.ManyToManyField(User, through="Rating")
     movie_commented_users = models.ManyToManyField(User, through="Comment", related_name="Comments")
     movie_genres = models.ManyToManyField(Genre)
@@ -56,7 +56,7 @@ class Movie(models.Model):
         return self.movie_name
 
 
-class Person_Movie(models.Model):
+class PersonMovie(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     role = models.CharField(max_length=100)
@@ -71,7 +71,7 @@ class Rating(models.Model):
 class Comment(models.Model):
     comment_description = models.TextField()
     comment_date = models.DateTimeField()
-    #likes
-    #dislikes
+    # likes
+    # dislikes
     comment_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     comment_user = models.ForeignKey(User, on_delete=models.CASCADE)
