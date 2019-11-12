@@ -14,6 +14,11 @@ def index(request):
                'countries': countries,
                'new_movies': new_movies,
                'user': None}
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+        context['user'] = user
+    except:
+        pass
     return render(request, "mainapp/index.html", context)
     # try:
     #     if request.session['user_id']:
@@ -153,6 +158,15 @@ def search(request):
             if movie.movie_name.lower().count(searched_text) > 0 or movie.movie_desctiption.lower().count(searched_text) > 0:
                 found_movies.append(movie)
         return render(request, "mainapp/search.html", {'found_movies': found_movies, 'user': user})
+    except:
+        pass
+
+
+def post_comment(request):
+    user = None
+    try:
+        comment_text = request.POST['comment_text']
+        
     except:
         pass
 
