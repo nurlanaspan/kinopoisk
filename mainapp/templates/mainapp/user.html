@@ -205,13 +205,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <p>
             <strong>Имя: </strong>{{ userx.user_name }}<br>
             <strong>Фамилия: </strong><a href="#">{{userx.user_surname}}</a><br>
+            <strong style='color:green'>{{userx.user_role}}</strong>
           </p>
           </div>
           <div style="color: white">
             <form class="" action="index.html" method="post">
               <input type="hidden" name="ban" value="yes">
+              {% if user %}
+                {% if user.user_role == 'admin' %}
               <input type="submit" value="Забанить" style="background: white; color: black; border: none; padding: 10px;">
-              Егер админ болса ғана қосып қоямыз
+                {% endif %}
+              {% endif %}
             </form>
           </div>
         </div>

@@ -175,8 +175,9 @@ def user(request, userx_id):
     context = {'userx': userx, 'user': None}
 
     try:
-        user = User.object.get(pk=request.session['user_id'])
+        user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
+        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     except:
         pass
     return render(request, "mainapp/user.html", context)
