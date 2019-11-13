@@ -209,14 +209,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </p>
           </div>
           <div style="color: white">
-            <form class="" action="index.html" method="post">
-              <input type="hidden" name="ban" value="yes">
-              {% if user %}
-                {% if user.user_role == 'admin' %}
+			{% if user %}
+			  {% if user.user_role == 'admin' %}
+            <form class="" action="{% url 'mainapp:ban_user' userx.id %}" method="post">
+				{% csrf_token %}
+              <input type="hidden" name="banuser" value="{{ userx.id }}">
               <input type="submit" value="Забанить" style="background: white; color: black; border: none; padding: 10px;">
-                {% endif %}
-              {% endif %}
-            </form>
+			</form>
+			{% endif %}
+			{% endif %}
           </div>
         </div>
       </div>

@@ -205,4 +205,25 @@ def user(request, userx_id):
         pass
     return render(request, "mainapp/user.html", context)
 
+
+def ban_user(request, userx_id):
+    print('sdsddskdkgmlskdjflksdljfklsjdfjsd')
+    context = {'user': None}
+
+    try:
+        userx = get_object_or_404(User, pk=request.POST['banuser'])
+        context['userx'] = userx
+        userx.user_status = 'banned'
+        userx.save()      
+    except:
+        pass
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+        context['user'] = user
+        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+    except:
+        pass
+    return render(request, "mainapp/user.html", context)
+    
+
 # Create your views here.

@@ -236,13 +236,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<iframe width="770" height="400" src="{{ movie.movie_url_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 						<div id="movieReview">
+							
 						{% if user %}
+						{% if user.user_status == 'banned' %}
+						<p style="color: red">Вы не можете комментировать. BAN</p>
+						{% else %}}
 						<form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
 							{% csrf_token %}
 							<p><textarea name="comment_text" id="textarea" cols="100" rows="10" onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea></p>
 							<p id="buttons"><input type="submit" name="submit" value="Отправить">   <input type="reset" name="reset" value="Очистить"></p>
 							<input type="hidden" name="movie_id" value="{{movie.id}}"/>
 						</form>
+						{% endif %}
 						{% else %}
 						<p>ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
 						{% endif %}
