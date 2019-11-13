@@ -142,7 +142,9 @@ def movie(request, movie_id):
     moviex = get_object_or_404(Movie, pk=movie_id)
     genres = moviex.movie_genres.all()
     countries = moviex.movie_country.all()
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'user': None}
+    comments = Comment.objects.filter(comment_movie=moviex)
+
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,'user': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user

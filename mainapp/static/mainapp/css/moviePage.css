@@ -1,6 +1,6 @@
 #wrapper {
     width: 800px;
-    height: 1400px;
+    min-height: 1400px;
     //outline: 1px solid red;
     padding: 1px 10px;
     margin: 25px auto;

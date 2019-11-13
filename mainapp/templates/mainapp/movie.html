@@ -236,13 +236,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<iframe width="770" height="400" src="{{ movie.movie_url_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 						<div id="movieReview">
-						<p>ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
+						{% if user %}
 						<form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
 							{% csrf_token %}
 							<p><textarea name="comment_text" id="textarea" cols="100" rows="10" onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea></p>
 							<p id="buttons"><input type="submit" name="submit" value="Отправить">   <input type="reset" name="reset" value="Очистить"></p>
 							<input type="hidden" name="movie_id" value="{{movie.id}}"/>
 						</form>
+						{% else %}
+						<p>ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
+						{% endif %}
+					</div>
+					<hr>
+					<div class="">
+						{% if comments %}
+							<p> <strong>Комментарии: </strong> </p>
+							{% for comment in comments %}
+							<div style="padding-top: 50px; width: 90%; margin-right: auto; margin-left: auto">
+								<strong><a href="{% url 'mainapp:user' comment.comment_user.id %}"><span style="color: #ddd;">Пользователь: </span>{{ comment.comment_user.user_name }}</a></strong>
+								<p> > {{ comment.comment_description }}</p>
+								<p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
+								<hr>
+							</div>
+							{% endfor %}
+						{% else %}
+							<p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p>
+						{% endif %}
 					</div>
 					</div>
 				</div>
