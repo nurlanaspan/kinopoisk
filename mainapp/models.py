@@ -33,6 +33,17 @@ class User(models.Model):
     user_status = models.CharField(max_length=16, default='not banned')
 
 
+class Category(models.Model):
+    PARAMETERS = (
+        ('movie_main_rating', 'movie_main_rating'),
+        ('movie_critics_raing', 'movie_critics_raing'),
+        ('movie_user_rating', 'movie_user_rating'),
+        ('movie_date', 'movie_date')
+    )
+    category_name = models.CharField(max_length=100)
+    category_order_by_parameter = models.CharField(max_length=32, choices=PARAMETERS, default='movie_main_rating')
+
+
 class Movie(models.Model):
     movie_name = models.CharField(max_length=100)
     movie_desctiption = models.TextField()
@@ -50,6 +61,7 @@ class Movie(models.Model):
     movie_rated_users = models.ManyToManyField(User, through="Rating")
     movie_commented_users = models.ManyToManyField(User, through="Comment", related_name="Comments")
     movie_genres = models.ManyToManyField(Genre)
+    movie_categories = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.movie_name

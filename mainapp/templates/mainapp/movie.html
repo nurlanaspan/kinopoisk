@@ -263,6 +263,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
 								<hr>
 							</div>
+							{% if user.role == 'admin' %}
+							{% endif %}
 							{% endfor %}
 						{% else %}
 							<p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p>

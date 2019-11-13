@@ -73,6 +73,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 								</ul>
 							</li>
+							<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Категории <b class="caret"></b></a>
+									<ul class="dropdown-menu multi-column columns-3">
+										<li>
+											<div class="col-sm-4">
+												<ul class="multi-column-dropdown">
+													{% for category in categories %}
+													<li><a href="index.html">{{ category.category_name }}</a></li>
+													{% endfor %}
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</li>
+									</ul>
+								</li>
 							<li><a href="index.html">Помощь</a></li>
 							<li><a href="index.html">Контакты</a></li>
 						</ul>
@@ -233,12 +248,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 		</div>
-			<h3 class="agile_w3_title"><span>Рекомендации</span> </h3>
+			<h3 class="agile_w3_title"><span>{{categories.0.category_name}}</span> </h3>
 			<!--/requested-movies-->
 				 <div class="wthree_agile-requested-movies">
-					 				{% for movie in movies %}
+					 				{% for movie in movies_category_1 %}
 									<div class="col-md-2 w3l-movie-gride-agile requested-movies">
-														<a href="index.html" class="hvr-sweep-to-bottom"><img src="{% static movie.movie_url_image %}" title="Movies Pro" class="img-responsive" alt=" ">
+														<a href="{% url 'mainapp:movie' movie.id%}" class="hvr-sweep-to-bottom"><img src="{% static movie.movie_url_image %}" title="Movies Pro" class="img-responsive" alt=" ">
 															<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 														</a>
 															<div class="mid-1 agileits_w3layouts_mid_1_home">
@@ -263,12 +278,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 															<p>NEW</p>
 														</div>
 													</div>
-														
+													{% endfor %}			
 									</div>
 								
-									{% endfor %}
+									
 									<div class="clearfix"></div>
-					</div>
 			<!--//requested-movies-->
 				 
 				<!--//tab-section-->
