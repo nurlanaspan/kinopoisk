@@ -117,6 +117,30 @@ def movie(request, movie_id):
     return render(request, "mainapp/movie.html", context)
 
 
+def delete_comment(request, movie_id):
+    print('DELETE COMMENT')
+    moviex = get_object_or_404(Movie, pk=movie_id)
+    genres = moviex.movie_genres.all()
+    countries = moviex.movie_country.all()
+    comments = Comment.objects.filter(comment_movie=moviex)
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,'user': None} 
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+        context['user'] = user
+        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+    except:
+        pass
+
+    try:
+        comment_id = request.POST['comment_id']
+        Comment.objects.get(pk=comment_id).delete()
+    except:
+        pass
+        
+    return render(request, "mainapp/movie.html", context)
+    
+
+
 def search(request):
     user = None
     try:

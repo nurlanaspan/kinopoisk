@@ -12,5 +12,6 @@ urlpatterns = [
     path('exit_from_account', views.exit_from_account, name="exit_from_account"),
     path('post_comment', views.post_comment, name="post_comment"),
     path('user/<int:userx_id>', views.user, name='user'),
-    path('user/ban/<int:userx_id>', views.ban_user, name="ban_user")
+    path('user/ban/<int:userx_id>', views.ban_user, name="ban_user"),
+    path('movie/delete_comment/<int:movie_id>', views.delete_comment, name="delete_comment")
 ]

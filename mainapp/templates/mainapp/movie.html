@@ -244,7 +244,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
 							{% csrf_token %}
 							<p><textarea name="comment_text" id="textarea" cols="100" rows="10" onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea></p>
-							<p id="buttons"><input type="submit" name="submit" value="Отправить">   <input type="reset" name="reset" value="Очистить"></p>
+							<p id="buttons" style="color: black"><input type="submit" name="submit" value="Отправить">   <input type="reset" name="reset" value="Очистить"></p>
 							<input type="hidden" name="movie_id" value="{{movie.id}}"/>
 						</form>
 						{% endif %}
@@ -261,10 +261,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<strong><a href="{% url 'mainapp:user' comment.comment_user.id %}"><span style="color: #ddd;">Пользователь: </span>{{ comment.comment_user.user_name }}</a></strong>
 								<p> > {{ comment.comment_description }}</p>
 								<p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
+								{% if user.user_role == 'admin'  or comment.comment_user.id == user.id %}
+									<form action="{% url 'mainapp:delete_comment' movie.id %}" style="color: red" method="POST" name="form2">
+										{% csrf_token %}
+										<input type="hidden" name='comment_id' value="{{ comment.id }}">
+										<input type="submit" name="submit" value="DELETE COMMENT"> 
+									</form>
+								{% endif %}
 								<hr>
 							</div>
-							{% if user.role == 'admin' %}
-							{% endif %}
 							{% endfor %}
 						{% else %}
 							<p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p>
