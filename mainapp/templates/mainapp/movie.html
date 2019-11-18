@@ -194,14 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 				<!-- //Modal1 -->
 			<!--/content-inner-section-->
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<title>Document</title>
-				<link rel="stylesheet" href="mp.css">
-			</head>
-			<body>
+
 				<div id="wrapper">
 					<div id="movieTitle"><h2>{{ movie.movie_name }}</h2></div>
 					<div id="movieContent">
@@ -223,35 +216,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<strong>Продолжительность: </strong>{{movie.movie_duration}} мин.<br>
 						</p>
 						</div>
+						<hr style="border: 1px solid #02a388; width: 100%; margin-top: 20px;">
 						<div id="movieCast">
 							<p>
 								<strong>Режиссер: </strong>Serik Sultanbek<br>
 								<strong>В ролях: </strong>Turar Muldashev, Nurlan Muslim, Dias Abylkasym<br>
-							</p>
-							<p>
-								<strong>смотреть онлайн Джокер (2019) в хорошем качестве</strong>
 							</p>
 						</div>
 						<div id="movieTrailer">
 							<iframe width="770" height="400" src="{{ movie.movie_url_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 						<div id="movieReview">
-							
-						{% if user %}
-						{% if user.user_status == 'banned' %}
-						<p style="color: red">Вы не можете комментировать. BAN</p>
-						{% else %}}
-						<form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
-							{% csrf_token %}
-							<p><textarea name="comment_text" id="textarea" cols="100" rows="10" onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea></p>
-							<p id="buttons" style="color: black"><input type="submit" name="submit" value="Отправить">   <input type="reset" name="reset" value="Очистить"></p>
-							<input type="hidden" name="movie_id" value="{{movie.id}}"/>
-						</form>
-						{% endif %}
-						{% else %}
-						<p>ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
-						{% endif %}
-					</div>
+							<hr style="border: 2px solid #02a388; width: 100%; margin-top: 40px; margin-bottom: 20px;">
+							{% if user %}
+							{% if user.user_status == 'banned' %}
+							<p style="color: red">Вы не можете комментировать. BAN</p>
+							{% else %}
+							<form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
+								{% csrf_token %}
+								<p style="text-align: center;"><textarea name="comment_text" id="textarea" cols="100" rows="10" onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea></p>
+								<p id="buttons" style=" padding: 0;"><input type="submit" name="submit" value="Отправить" class="commentbutton"></p>
+								<input type="hidden" name="movie_id" value="{{movie.id}}"/>
+							</form>
+							{% endif %}
+							{% else %}
+							<p style="text-align: center">ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
+							{% endif %}
+						</div>
 					<hr>
 					<div class="">
 						{% if comments %}
@@ -262,17 +253,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p> > {{ comment.comment_description }}</p>
 								<p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
 								{% if user.user_role == 'admin'  or comment.comment_user.id == user.id %}
+								<div>
 									<form action="{% url 'mainapp:delete_comment' movie.id %}" style="color: red" method="POST" name="form2">
 										{% csrf_token %}
 										<input type="hidden" name='comment_id' value="{{ comment.id }}">
-										<input type="submit" name="submit" value="DELETE COMMENT"> 
+										<input type="submit" name="submit" value="DELETE COMMENT">
 									</form>
+								</div>
 								{% endif %}
 								<hr>
 							</div>
 							{% endfor %}
 						{% else %}
-							<p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p>
+							<div><p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p></div>
 						{% endif %}
 					</div>
 					</div>
@@ -280,8 +273,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div>
 
 				</div>
-			</body>
-			</html>
 			<!--//requested-movies-->
 
 				<!--//tab-section-->
