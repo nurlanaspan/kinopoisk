@@ -211,12 +211,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div style="color: white">
 			{% if user %}
 			  {% if user.user_role == 'admin' %}
-            <form class="" action="{% url 'mainapp:ban_user' userx.id %}" method="post">
-				{% csrf_token %}
-              <input type="hidden" name="banuser" value="{{ userx.id }}">
-              <input type="submit" value="Забанить" style="background: white; color: black; border: none; padding: 10px;">
-			</form>
-			{% endif %}
+					{% if userx.user_status == 'banned' %}
+								<strong style='color:red'>ЗАБАНЕН</strong>
+		            <form class="" action="{% url 'mainapp:ban_user' userx.id %}" method="post">
+									{% csrf_token %}
+		              <input type="hidden" name="notbanuser" value="{{ userx.id }}">
+		              <input type="submit" value="Разбанить" style="background: white; color: black; border: none; padding: 10px;">
+								</form>
+					{% else %}
+	            <form class="" action="{% url 'mainapp:ban_user' userx.id %}" method="post">
+								{% csrf_token %}
+	              <input type="hidden" name="banuser" value="{{ userx.id }}">
+	              <input type="submit" value="Забанить" style="background: white; color: black; border: none; padding: 10px;">
+							</form>
+					{% endif %}
+				{% endif %}
 			{% endif %}
           </div>
         </div>

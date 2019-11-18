@@ -57,7 +57,7 @@ def registration(request):
         context['user'] = user
     except:
         pass
-    return render(request, "mainapp/index.html", context)
+    return HttpResponseRedirect(reverse('mainapp:index'))
 
 
 def authentication(request):
@@ -79,7 +79,7 @@ def authentication(request):
             context['user'] = user
     except:
         pass
-    return render(request, "mainapp/index.html", context)
+    return HttpResponseRedirect(reverse('mainapp:index'))
 
 
 def exit_from_account(request):
@@ -97,7 +97,7 @@ def exit_from_account(request):
             del request.session['user_id']
     except:
         pass
-    return render(request, "mainapp/index.html", context)
+    return HttpResponseRedirect(reverse('mainapp:index'))
 
 
 def movie(request, movie_id):
@@ -123,7 +123,7 @@ def delete_comment(request, movie_id):
     genres = moviex.movie_genres.all()
     countries = moviex.movie_country.all()
     comments = Comment.objects.filter(comment_movie=moviex)
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,'user': None} 
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,'user': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -136,9 +136,10 @@ def delete_comment(request, movie_id):
         Comment.objects.get(pk=comment_id).delete()
     except:
         pass
-        
-    return render(request, "mainapp/movie.html", context)
-    
+
+    return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id,)))
+    #return render(request, "mainapp/movie.html", context)
+
 
 
 def search(request):
@@ -200,16 +201,26 @@ def ban_user(request, userx_id):
         userx = get_object_or_404(User, pk=request.POST['banuser'])
         context['userx'] = userx
         userx.user_status = 'banned'
-        userx.save()      
+        userx.save()
     except:
         pass
+
+    try:
+        userx = get_object_or_404(User, pk=request.POST['notbanuser'])
+        context['userx'] = userx
+        userx.user_status = 'not banned'
+        userx.save()
+    except:
+        pass
+
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
         print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     except:
         pass
-    return render(request, "mainapp/user.html", context)
-    
+    return HttpResponseRedirect(reverse('mainapp:user', args=(userx_id, )))
+    #return render(request, "mainapp/user.html", context)
+
 
 # Create your views here.
