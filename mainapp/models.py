@@ -33,6 +33,11 @@ class User(models.Model):
     user_status = models.CharField(max_length=16, default='not banned')
 
 
+class Report(models.Model):
+    report_from_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    report_to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="to_user")
+
+
 class Category(models.Model):
     PARAMETERS = (
         ('movie_main_rating', 'movie_main_rating'),
