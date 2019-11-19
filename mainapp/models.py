@@ -82,7 +82,7 @@ class Rating(models.Model):
 class Comment(models.Model):
     comment_description = models.TextField()
     comment_date = models.DateTimeField()
-    # likes
+    comment_liked_users = models.ManyToManyField(User)
     # dislikes
     comment_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    comment_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
