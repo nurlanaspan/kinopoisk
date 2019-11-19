@@ -1,396 +1,440 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>KinoPoisk</title>
-{% load static %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content=" Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="{% static 'mainapp/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
-<link href="{% static 'mainapp/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
-<link href="{% static 'mainapp/css/easy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
-<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/zoomslider.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/style.css' %}" />
-<link href="{% static 'mainapp/css/font-awesome.css' %}" rel="stylesheet">
-<script type="text/javascript" src="{% static 'mainapp/js/modernizr-2.6.2.min.js' %}"></script>
-<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900" rel="stylesheet">
-<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{% static 'mainapp/css/moviePage.css' %}">
+    <title>KinoPoisk</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=" Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); }
+
+
+    </script>
+    <link href="{% static 'mainapp/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static 'mainapp/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static 'mainapp/css/easy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/zoomslider.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/style.css' %}"/>
+    <link href="{% static 'mainapp/css/font-awesome.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'mainapp/js/modernizr-2.6.2.min.js' %}"></script>
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'mainapp/css/moviePage.css' %}">
 </head>
 <body>
 <!--/main-header-->
-  <!--/banner-section-->
-	<div id="demo-1" class="banner-inner">
-		<div class="demo-inner-content">
-		<!--/header-w3l-->
-			   <div class="header-w3-agileits" id="home">
-			     <div class="inner-header-agile">
-				<nav class="navbar navbar-default">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<h1><a  href="index.html"><span>K</span>ino <span>P</span>oisk</a></h1>
-					</div>
-					<!-- navbar-header -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">По жанрам <b class="caret"></b></a>
-								<ul class="dropdown-menu multi-column columns-3">
-									<li>
-									<div class="col-sm-4">
-										<ul class="multi-column-dropdown">
-											{% for genre in genres %}
+<!--/banner-section-->
+<div id="demo-1" class="banner-inner">
+    <div class="demo-inner-content">
+        <!--/header-w3l-->
+        <div class="header-w3-agileits" id="home">
+            <div class="inner-header-agile">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1><a href="index.html"><span>K</span>ino <span>P</span>oisk</a></h1>
+                    </div>
+                    <!-- navbar-header -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">По жанрам <b
+                                        class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column columns-3">
+                                    <li>
+                                        <div class="col-sm-4">
+                                            <ul class="multi-column-dropdown">
+                                                {% for genre in genres %}
 
-											<li><a href="index.html">{{ genre.genre_name }}</a></li>
+                                                <li><a href="index.html">{{ genre.genre_name }}</a></li>
 
-											{% endfor %}
-										</ul>
-									</div>
-									<div class="clearfix"></div>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">По странам <b class="caret"></b></a>
-								<ul class="dropdown-menu multi-column columns-3">
-									<li>
-										<div class="col-sm-4">
-											<ul class="multi-column-dropdown">
-												{% for country in countries %}
-												<li><a href="index.html">{{ country.country_name_russian }}</a></li>
-												{% endfor %}
-											</ul>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-								</ul>
-							</li>
-							<li><a href="index.html">Помощь</a></li>
-							<li><a href="index.html">Контакты</a></li>
-						</ul>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">По странам <b
+                                        class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column columns-3">
+                                    <li>
+                                        <div class="col-sm-4">
+                                            <ul class="multi-column-dropdown">
+                                                {% for country in countries %}
+                                                <li><a href="index.html">{{ country.country_name_russian }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="index.html">Помощь</a></li>
+                            <li><a href="index.html">Контакты</a></li>
+                        </ul>
 
-					</div>
-					<div class="clearfix"> </div>
-				</nav>
-					<div class="w3ls_search">
-									<div class="cd-main-header">
-										<ul class="cd-header-buttons">
-											<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-										</ul> <!-- cd-header-buttons -->
-									</div>
-									<div id="cd-search" class="cd-search">
-										<form action="{% url 'mainapp:search' %}" method="post">
-											{% csrf_token %}
-											<input name="searched_text" type="search" placeholder="Поиск..." required>
-										</form>
-									</div>
-					</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </nav>
+                <div class="w3ls_search">
+                    <div class="cd-main-header">
+                        <ul class="cd-header-buttons">
+                            <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+                        </ul> <!-- cd-header-buttons -->
+                    </div>
+                    <div id="cd-search" class="cd-search">
+                        <form action="{% url 'mainapp:search' %}" method="post">
+                            {% csrf_token %}
+                            <input name="searched_text" type="search" placeholder="Поиск..." required>
+                        </form>
+                    </div>
+                </div>
 
-			</div>
+            </div>
 
-			   </div>
+        </div>
 
-		</div>
     </div>
-  <!--/banner-section-->
- <!--//main-header-->
-	         <!--/banner-bottom-->
-			  <div class="w3_agilits_banner_bootm">
-			     <div class="w3_agilits_inner_bottom">
-			            <div class="col-md-6 wthree_agile_login">
-						     <ul>
-									<li><i class="fa fa-phone" aria-hidden="true"></i> +7-(777)-77-77</li>
-									{% if user %}
-									<li>
-										<form action="{% url 'mainapp:exit_from_account' %}" method="POST">
-											{% csrf_token %}
-											<input type="hidden" name="exit" value="yes">
-											<input type="submit" value="Выход" style="background: black">
-										</form>
-									</li>
-									<li>
-										<h2>{{user.user_name}}</h2>
-									</li>
-									{% else %}
-									<li><a href="#" class="login"  data-toggle="modal" data-target="#myModal4">Логин</a></li>
-									<li><a href="#" class="login reg"  data-toggle="modal" data-target="#myModal5">Регистрация</a></li>
-									{% endif %}
+</div>
+<!--/banner-section-->
+<!--//main-header-->
+<!--/banner-bottom-->
+<div class="w3_agilits_banner_bootm">
+    <div class="w3_agilits_inner_bottom">
+        <div class="col-md-6 wthree_agile_login">
+            <ul>
+                <li><i class="fa fa-phone" aria-hidden="true"></i> +7-(777)-77-77</li>
+                {% if user %}
+                <li>
+                    <form action="{% url 'mainapp:exit_from_account' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="exit" value="yes">
+                        <input type="submit" value="Выход" style="background: black">
+                    </form>
+                </li>
+                <li>
+                    <h2>{{user.user_name}}</h2>
+                </li>
+                {% else %}
+                <li><a href="#" class="login" data-toggle="modal" data-target="#myModal4">Логин</a></li>
+                <li><a href="#" class="login reg" data-toggle="modal" data-target="#myModal5">Регистрация</a></li>
+                {% endif %}
 
-								</ul>
-						</div>
+            </ul>
+        </div>
 
-				</div>
-			</div>
-			<!--//banner-bottom-->
-			 <!-- Modal1 -->
-					<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" >
+    </div>
+</div>
+<!--//banner-bottom-->
+<!-- Modal1 -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
 
-							<div class="modal-dialog">
-							<!-- Modal content-->
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4>Логин</h4>
-										<div class="login-form">
-											<form action="{% url 'mainapp:index' %}" method="POST">
-												{% csrf_token %}
-												<input type="text" name="user_login" placeholder="Логин" required="">
-												<input type="password" name="user_password" placeholder="Пароль" required="">
-												<input type="hidden" name="login_performed" value="yes">
-												<div class="tp">
-													<input type="submit" value="Войти">
-												</div>
-												<div class="forgot-grid">
-												       <div class="log-check">
-														<label class="checkbox"><input type="checkbox" name="checkbox">Запомнить</label>
-														</div>
-														<div class="forgot">
-															<a href="#" data-toggle="modal" data-target="#myModal2">Забыли пароль?</a>
-														</div>
-														<div class="clearfix"></div>
-													</div>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Логин</h4>
+                <div class="login-form">
+                    <form action="{% url 'mainapp:index' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="user_login" placeholder="Логин" required="">
+                        <input type="password" name="user_password" placeholder="Пароль" required="">
+                        <input type="hidden" name="login_performed" value="yes">
+                        <div class="tp">
+                            <input type="submit" value="Войти">
+                        </div>
+                        <div class="forgot-grid">
+                            <div class="log-check">
+                                <label class="checkbox"><input type="checkbox" name="checkbox">Запомнить</label>
+                            </div>
+                            <div class="forgot">
+                                <a href="#" data-toggle="modal" data-target="#myModal2">Забыли пароль?</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
 
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				<!-- //Modal1 -->
-				  <!-- Modal1 -->
-					<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Modal1 -->
+<!-- Modal1 -->
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog">
 
-										<div class="modal-dialog">
-										<!-- Modal content-->
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal">&times;</button>
-													<h4>Регистрация</h4>
-													<div class="login-form">
-														<form action="{%url 'mainapp:index'%}" method="post">
-															{% csrf_token %}
-															<input type="text" name="name" placeholder="Имя" required="">
-															<input type="text" name="surname" placeholder="Фамилия" required="">
-															<input type="text" name="login" placeholder="Логин" required="">
-															<input type="password" name="password" placeholder="Пароль" required="">
-															<input type="password" name="conform-password" placeholder="Подтвердите пароль" required="">
-															<div class="tp">
-																<input type="submit" value="Зарегистрироваться">
-															</div>
-														</form>
-													</div>
-												</div>
-											</div>
-										</div>
-						</div>
-				<!-- //Modal1 -->
-			<!--/content-inner-section-->
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Регистрация</h4>
+                <div class="login-form">
+                    <form action="{%url 'mainapp:index'%}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="name" placeholder="Имя" required="">
+                        <input type="text" name="surname" placeholder="Фамилия" required="">
+                        <input type="text" name="login" placeholder="Логин" required="">
+                        <input type="password" name="password" placeholder="Пароль" required="">
+                        <input type="password" name="conform-password" placeholder="Подтвердите пароль" required="">
+                        <div class="tp">
+                            <input type="submit" value="Зарегистрироваться">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Modal1 -->
+<!--/content-inner-section-->
 
-				<div id="wrapper">
-					<div id="movieTitle"><h2>{{ movie.movie_name }}</h2></div>
-					<div id="movieContent">
-						<div id="moviePhoto"><img src="{% static movie.movie_url_image %}" alt="Djoker" width="283px" height="390px"></div>
-						<div id="movieDescription"><p>{{ movie.movie_desctiption }}</p>
-						<p>
-							<strong>Название: </strong>{{ movie.movie_name }}<br>
-							<strong>Год выпуска: </strong><a href="#">{{movie.movie_date}}</a><br>
-							<strong>Страна: </strong>
-							{%for country in countries %}
-							<a href="#">{{country.country_name_russian}}</a>
-							{% endfor %}
-							<br>
-							<strong>Жанр: </strong>
-							{% for genre in genres %}
-							<a href="#">{{genre.genre_name}}</a>
-							{% endfor %}
-							<br>
-							<strong>Продолжительность: </strong>{{movie.movie_duration}} мин.<br>
-						</p>
-						</div>
-						<hr style="border: 1px solid #02a388; width: 100%; margin-top: 20px;">
-						<div id="movieCast">
-							<p>
-								<strong>Режиссер: </strong>Serik Sultanbek<br>
-								<strong>В ролях: </strong>Turar Muldashev, Nurlan Muslim, Dias Abylkasym<br>
-							</p>
-						</div>
-						<div id="movieTrailer">
-							<iframe width="770" height="400" src="{{ movie.movie_url_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						</div>
-						<div id="movieReview">
-							<hr style="border: 2px solid #02a388; width: 100%; margin-top: 40px; margin-bottom: 20px;">
-							{% if user %}
-							{% if user.user_status == 'banned' %}
-							<p style="color: red">Вы не можете комментировать. BAN</p>
-							{% else %}
-							<form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
-								{% csrf_token %}
-								<p style="text-align: center;"><textarea name="comment_text" id="textarea" cols="100" rows="10" onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea></p>
-								<p id="buttons" style=" padding: 0;"><input type="submit" name="submit" value="Отправить" class="commentbutton"></p>
-								<input type="hidden" name="movie_id" value="{{movie.id}}"/>
-							</form>
-							{% endif %}
-							{% else %}
-							<p style="text-align: center">ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
-							{% endif %}
-						</div>
-					<hr>
-					<div class="">
-						{% if comments %}
-							<p> <strong>Комментарии: </strong> </p>
-							{% for comment in comments %}
-							<div style="padding-top: 50px; width: 90%; margin-right: auto; margin-left: auto">
-								<strong><a href="{% url 'mainapp:user' comment.comment_user.id %}"><span style="color: #ddd;">Пользователь: </span>{{ comment.comment_user.user_name }}</a></strong>
-								<p> > {{ comment.comment_description }}</p>
-								<p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
-								{% if user.user_role == 'admin'  or comment.comment_user.id == user.id %}
-								<div>
-									<form action="{% url 'mainapp:delete_comment' movie.id %}" style="color: red" method="POST" name="form2">
-										{% csrf_token %}
-										<input type="hidden" name='comment_id' value="{{ comment.id }}">
-										<input type="submit" name="submit" value="DELETE COMMENT">
-									</form>
-								</div>
-								{% endif %}
-								<hr>
-							</div>
-							{% endfor %}
-						{% else %}
-							<div><p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p></div>
-						{% endif %}
-					</div>
-					</div>
-				</div>
-				<div>
+<div id="wrapper">
+    <div id="movieTitle"><h2>{{ movie.movie_name }}</h2></div>
+    <div id="movieContent">
+        <div id="moviePhoto"><img src="{% static movie.movie_url_image %}" alt="Djoker" width="283px" height="390px">
+        </div>
+        <div id="movieDescription"><p>{{ movie.movie_desctiption }}</p>
+            <p>
+                <strong>Название: </strong>{{ movie.movie_name }}<br>
+                <strong>Год выпуска: </strong><a href="#">{{movie.movie_date}}</a><br>
+                <strong>Страна: </strong>
+                {%for country in countries %}
+                <a href="#">{{country.country_name_russian}}</a>
+                {% endfor %}
+                <br>
+                <strong>Жанр: </strong>
+                {% for genre in genres %}
+                <a href="#">{{genre.genre_name}}</a>
+                {% endfor %}
+                <br>
+                <strong>Продолжительность: </strong>{{movie.movie_duration}} мин.<br>
+            </p>
+        </div>
+        <hr style="border: 1px solid #02a388; width: 100%; margin-top: 20px;">
+        <div id="movieCast">
+            <p>
+                <strong>Режиссер: </strong>Serik Sultanbek<br>
+                <strong>В ролях: </strong>Turar Muldashev, Nurlan Muslim, Dias Abylkasym<br>
+            </p>
+        </div>
+        <div class="block-stars">
+            <ul class="w3l-ratings">
+                {% for star in stars %}
+                {% if star == 2 %}
+                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                {% elif star == 1 %}
+                <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                {% elif star == 0 %}
+                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="movieTrailer">
+            <iframe width="770" height="400" src="{{ movie.movie_url_trailer }}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+		<div>
+			<form method="post" action="{% url 'mainapp:rate_movie' movie.id%}">
+				{% csrf_token %}
+				<input type="radio" name="new_rating" value="1">
+				<input type="radio" name="new_rating" value="2">
+				<input type="radio" name="new_rating" value="3">
+				<input type="radio" name="new_rating" value="4">
+				<input type="radio" name="new_rating" value="5">
+				<input type="radio" name="new_rating" value="6">
+				<input type="radio" name="new_rating" value="7">
+				<input type="radio" name="new_rating" value="8">
+				<input type="radio" name="new_rating" value="9">
+				<input type="radio" name="new_rating" value="10">
+				<input type="submit" value="Оценить">
+			</form>
+		</div>
+        <div id="movieReview">
+            <hr style="border: 2px solid #02a388; width: 100%; margin-top: 40px; margin-bottom: 20px;">
+            {% if user %}
+            {% if user.user_status == 'banned' %}
+            <p style="color: red">Вы не можете комментировать. BAN</p>
+            {% else %}
+            <form action="{% url 'mainapp:post_comment' %}" method="POST" name="form1">
+                {% csrf_token %}
+                <p style="text-align: center;"><textarea name="comment_text" id="textarea" cols="100" rows="10"
+                                                         onfocus="this.value=''">Ваше сообщение...1) не менее 100 символов - будьте креативнее! 2)комменты не несущий смысловой нагрузки будут удаляться!</textarea>
+                </p>
+                <p id="buttons" style=" padding: 0;"><input type="submit" name="submit" value="Отправить"
+                                                            class="commentbutton"></p>
+                <input type="hidden" name="movie_id" value="{{movie.id}}"/>
+            </form>
+            {% endif %}
+            {% else %}
+            <p style="text-align: center">ЧТОБЫ ОСТАВИТЬ КОММЕНТАРИЙ ВАМ НУЖНО ВОЙТИ В СИСЕМУ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ</p>
+            {% endif %}
+        </div>
+        <hr>
+        <div class="">
+            {% if comments %}
+            <p><strong>Комментарии: </strong></p>
+            {% for comment in comments %}
+            <div style="padding-top: 50px; width: 90%; margin-right: auto; margin-left: auto">
+                <strong><a href="{% url 'mainapp:user' comment.comment_user.id %}"><span style="color: #ddd;">Пользователь: </span>{{ comment.comment_user.user_name }}</a></strong>
+                <p> > {{ comment.comment_description }}</p>
+                <p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
+                {% if user.user_role == 'admin' or comment.comment_user.id == user.id %}
+                <div>
+                    <form action="{% url 'mainapp:delete_comment' movie.id %}" style="color: red" method="POST"
+                          name="form2">
+                        {% csrf_token %}
+                        <input type="hidden" name='comment_id' value="{{ comment.id }}">
+                        <input type="submit" name="submit" value="DELETE COMMENT">
+                    </form>
+                </div>
+                {% endif %}
+                <hr>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div><p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p></div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div>
 
-				</div>
-			<!--//requested-movies-->
+</div>
+<!--//requested-movies-->
 
-				<!--//tab-section-->
+<!--//tab-section-->
 
-			<!--//content-inner-section-->
+<!--//content-inner-section-->
 
-	<!--/footer-bottom-->
-		<div class="contact-w3ls" id="contact">
-			<div class="footer-w3lagile-inner">
-				<h2>ПОДПИШИТЕСЬ НА НАС</h2>
-				<div class="footer-contact">
-					<form action="#" method="post">
-						<input type="email" name="Email" placeholder="Введите ваш адрес электронной почты...." required=" ">
-						<input type="submit" value="Подписаться">
-					</form>
-				</div>
-					<div class="footer-grids w3-agileits">
-						<div class="col-md-2 footer-grid">
-						<h4>Релизы</h4>
-							<ul>
-								<li><a href="#" title="Release 2016">2019</a></li>
-								<li><a href="#" title="Release 2015">2018</a></li>
-								<li><a href="#" title="Release 2014">2017</a></li>
-								<li><a href="#" title="Release 2013">2016</a></li>
-								<li><a href="#" title="Release 2012">2015</a></li>
-								<li><a href="#" title="Release 2011">2014</a></li>
-							</ul>
-						</div>
-							<div class="col-md-2 footer-grid">
-						<h4>Фильмы</h4>
-							<ul>
-								{% for genre in genres %}
-								<li><a href="index.html">{{genre.genre_name}}</a></li>
-								{% endfor %}
-							</ul>
-						</div>
-
-
-							<div class="col-md-2 footer-grid">
-								<h4>Обзор фильмов</h4>
-									<ul class="w3-tag2">
-											{% for genre in genres %}
-											<li><a href="index.html">{{genre.genre_name}}</a></li>
-											{% endfor %}
-								</ul>
-						</div>
-								<div class="col-md-2 footer-grid">
-						<h4>Новинки</h4>
-							{% for movie in new_movies %}
-							<div class="footer-grid1">
-								<div class="footer-grid1-left">
-									<a href="index.html"><img src="{% static movie.movie_url_image %}" alt=" " class="img-responsive"></a>
-								</div>
-								<div class="footer-grid1-right">
-									<a href="index.html">{{movie.movie_name}}</a>
-
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							{% endfor %}
-							<!-- <div class="footer-grid1">
-								<div class="footer-grid1-left">
-									<a href="index.html"><img src="{% static 'mainapp/images/m2.jpg' %}" alt=" " class="img-responsive"></a>
-								</div>
-								<div class="footer-grid1-right">
-									<a href="index.html">Ford против Ferrari</a>
-
-								</div>
-								<div class="clearfix"> </div>
-							</div> -->
+<!--/footer-bottom-->
+<div class="contact-w3ls" id="contact">
+    <div class="footer-w3lagile-inner">
+        <h2>ПОДПИШИТЕСЬ НА НАС</h2>
+        <div class="footer-contact">
+            <form action="#" method="post">
+                <input type="email" name="Email" placeholder="Введите ваш адрес электронной почты...." required=" ">
+                <input type="submit" value="Подписаться">
+            </form>
+        </div>
+        <div class="footer-grids w3-agileits">
+            <div class="col-md-2 footer-grid">
+                <h4>Релизы</h4>
+                <ul>
+                    <li><a href="#" title="Release 2016">2019</a></li>
+                    <li><a href="#" title="Release 2015">2018</a></li>
+                    <li><a href="#" title="Release 2014">2017</a></li>
+                    <li><a href="#" title="Release 2013">2016</a></li>
+                    <li><a href="#" title="Release 2012">2015</a></li>
+                    <li><a href="#" title="Release 2011">2014</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 footer-grid">
+                <h4>Фильмы</h4>
+                <ul>
+                    {% for genre in genres %}
+                    <li><a href="index.html">{{genre.genre_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
 
 
+            <div class="col-md-2 footer-grid">
+                <h4>Обзор фильмов</h4>
+                <ul class="w3-tag2">
+                    {% for genre in genres %}
+                    <li><a href="index.html">{{genre.genre_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-2 footer-grid">
+                <h4>Новинки</h4>
+                {% for movie in new_movies %}
+                <div class="footer-grid1">
+                    <div class="footer-grid1-left">
+                        <a href="index.html"><img src="{% static movie.movie_url_image %}" alt=" "
+                                                  class="img-responsive"></a>
+                    </div>
+                    <div class="footer-grid1-right">
+                        <a href="index.html">{{movie.movie_name}}</a>
 
-						</div>
-						<div class="col-md-2 footer-grid">
-								<h4>Скоро в кино</h4>
-								<div class="footer-grid1">
-									<div class="footer-grid1-left">
-										<a href="index.html"><img src="{% static 'mainapp/images/m3.jpg' %}" alt=" " class="img-responsive"></a>
-									</div>
-									<div class="footer-grid1-right">
-										<a href="index.html">Малифисента: Владычица тьмы</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                {% endfor %}
+                <!-- <div class="footer-grid1">
+                    <div class="footer-grid1-left">
+                        <a href="index.html"><img src="{% static 'mainapp/images/m2.jpg' %}" alt=" " class="img-responsive"></a>
+                    </div>
+                    <div class="footer-grid1-right">
+                        <a href="index.html">Ford против Ferrari</a>
 
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<div class="footer-grid1">
-									<div class="footer-grid1-left">
-										<a href="index.html"><img src="{% static 'mainapp/images/m4.jpg' %}" alt=" " class="img-responsive"></a>
-									</div>
-									<div class="footer-grid1-right">
-										<a href="index.html">Терминатор: Темные судьбы</a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div> -->
 
-									</div>
-									<div class="clearfix"> </div>
-							<div class="clearfix"> </div>
-						</div>
 
-					</div>
-					<h3 class="text-center follow">Присоединяйтесь к нам</h3>
-						<ul class="social-icons1 agileinfo">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						</ul>
+            </div>
+            <div class="col-md-2 footer-grid">
+                <h4>Скоро в кино</h4>
+                <div class="footer-grid1">
+                    <div class="footer-grid1-left">
+                        <a href="index.html"><img src="{% static 'mainapp/images/m3.jpg' %}" alt=" "
+                                                  class="img-responsive"></a>
+                    </div>
+                    <div class="footer-grid1-right">
+                        <a href="index.html">Малифисента: Владычица тьмы</a>
 
-			 </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="footer-grid1">
+                    <div class="footer-grid1-left">
+                        <a href="index.html"><img src="{% static 'mainapp/images/m4.jpg' %}" alt=" "
+                                                  class="img-responsive"></a>
+                    </div>
+                    <div class="footer-grid1-right">
+                        <a href="index.html">Терминатор: Темные судьбы</a>
 
-			</div>
-			<div class="w3agile_footer_copy">
-				    <p>© 2019 KinoPoisk. Все права защищены | Сделано командой "TMNT"</p>
-			</div>
-		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                </div>
 
-<script src="{% static 'mainapp/js/jquery-1.11.1.min.js' %}"></script>
-	<!-- Dropdown-Menu-JavaScript -->
-			<script>
+            </div>
+            <h3 class="text-center follow">Присоединяйтесь к нам</h3>
+            <ul class="social-icons1 agileinfo">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="w3agile_footer_copy">
+        <p>© 2019 KinoPoisk. Все права защищены | Сделано командой "TMNT"</p>
+    </div>
+    <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover"
+                                                                             style="opacity: 1;"> </span></a>
+
+    <script src="{% static 'mainapp/js/jquery-1.11.1.min.js' %}"></script>
+    <!-- Dropdown-Menu-JavaScript -->
+    <script>
 				$(document).ready(function(){
 					$(".dropdown").hover(
 						function() {
@@ -403,46 +447,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						}
 					);
 				});
-			</script>
-		<!-- //Dropdown-Menu-JavaScript -->
 
 
-<script type="text/javascript" src="{% static 'mainapp/js/jquery.zoomslider.min.js' %}"></script>
-		<!-- search-jQuery -->
-				<script src="{% static 'mainapp/js/main.js' %}"></script>
-			<script src="{% static 'mainapp/js/simplePlayer.js' %}"></script>
-			<script>
+
+    </script>
+    <!-- //Dropdown-Menu-JavaScript -->
+
+
+    <script type="text/javascript" src="{% static 'mainapp/js/jquery.zoomslider.min.js' %}"></script>
+    <!-- search-jQuery -->
+    <script src="{% static 'mainapp/js/main.js' %}"></script>
+    <script src="{% static 'mainapp/js/simplePlayer.js' %}"></script>
+    <script>
 				$("document").ready(function() {
 					$("#video").simplePlayer();
 				});
-			</script>
-			<script>
+
+
+
+    </script>
+    <script>
 				$("document").ready(function() {
 					$("#video1").simplePlayer();
 				});
-			</script>
-			<script>
+
+
+
+    </script>
+    <script>
 				$("document").ready(function() {
 					$("#video2").simplePlayer();
 				});
-			</script>
-				<script>
+
+
+
+    </script>
+    <script>
 				$("document").ready(function() {
 					$("#video3").simplePlayer();
 				});
-			</script>
 
-			<!-- pop-up-box -->
-		<script src="{% static 'mainapp/js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
-	<!--//pop-up-box -->
 
-			<div id="small-dialog1" class="mfp-hide">
-			<iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
-	</div>
-	<div id="small-dialog2" class="mfp-hide">
-		<iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
-	</div>
-	<script>
+
+    </script>
+
+    <!-- pop-up-box -->
+    <script src="{% static 'mainapp/js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+    <!--//pop-up-box -->
+
+    <div id="small-dialog1" class="mfp-hide">
+        <iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
+    </div>
+    <div id="small-dialog2" class="mfp-hide">
+        <iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
+    </div>
+    <script>
 		$(document).ready(function() {
 		$('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
 			type: 'inline',
@@ -457,9 +516,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 
 		});
-	</script>
-<script src="{% static 'mainapp/js/easy-responsive-tabs.js' %}"></script>
-<script>
+
+
+
+    </script>
+    <script src="{% static 'mainapp/js/easy-responsive-tabs.js' %}"></script>
+    <script>
 $(document).ready(function () {
 $('#horizontalTab').easyResponsiveTabs({
 type: 'default', //Types: default, vertical, accordion
@@ -480,10 +542,13 @@ width: 'auto',
 fit: true
 });
 });
-</script>
-<link href="{% static 'mainapp/css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all">
-<script src="{% static 'mainapp/js/owl.carousel.js' %}"></script>
-<script>
+
+
+
+    </script>
+    <link href="{% static 'mainapp/css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all">
+    <script src="{% static 'mainapp/js/owl.carousel.js' %}"></script>
+    <script>
 	$(document).ready(function() {
 		$("#owl-demo").owlCarousel({
 
@@ -498,21 +563,27 @@ fit: true
 		});
 
 	});
-</script>
 
-<!--/script-->
-<script type="text/javascript" src="{% static 'mainapp/js/move-top.js' %}"></script>
-<script type="text/javascript" src="{% static 'mainapp/js/easing.js' %}"></script>
 
-<script type="text/javascript">
+
+    </script>
+
+    <!--/script-->
+    <script type="text/javascript" src="{% static 'mainapp/js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mainapp/js/easing.js' %}"></script>
+
+    <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){
 					event.preventDefault();
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
 			});
-</script>
- <script type="text/javascript">
+
+
+
+    </script>
+    <script type="text/javascript">
 						$(document).ready(function() {
 							/*
 							var defaults = {
@@ -526,10 +597,12 @@ fit: true
 							$().UItoTop({ easingType: 'easeOutQuart' });
 
 						});
-					</script>
-<!--end-smooth-scrolling-->
-	<script src="{% static 'mainapp/js/bootstrap.js' %}"></script>
 
+
+
+    </script>
+    <!--end-smooth-scrolling-->
+    <script src="{% static 'mainapp/js/bootstrap.js' %}"></script>
 
 
 </body>

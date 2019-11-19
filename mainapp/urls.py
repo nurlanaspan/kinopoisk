@@ -13,5 +13,6 @@ urlpatterns = [
     path('post_comment', views.post_comment, name="post_comment"),
     path('user/<int:userx_id>', views.user, name='user'),
     path('user/ban/<int:userx_id>', views.ban_user, name="ban_user"),
-    path('movie/delete_comment/<int:movie_id>', views.delete_comment, name="delete_comment")
+    path('movie/delete_comment/<int:movie_id>', views.delete_comment, name="delete_comment"),
+    path('rate_movie/<int:movie_id>', views.rate_movie, name="rate_movie"),
 ]

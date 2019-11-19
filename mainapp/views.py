@@ -105,15 +105,14 @@ def movie(request, movie_id):
     genres = moviex.movie_genres.all()
     countries = moviex.movie_country.all()
     comments = Comment.objects.filter(comment_movie=moviex)
-
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,'user': None}
+    stars = get_rating_in_stars_list(moviex.movie_user_rating)
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,
+               'user': None, 'stars': stars}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
-        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     except:
         pass
-    print(context)
     return render(request, "mainapp/movie.html", context)
 
 
@@ -222,5 +221,35 @@ def ban_user(request, userx_id):
     return HttpResponseRedirect(reverse('mainapp:user', args=(userx_id, )))
     #return render(request, "mainapp/user.html", context)
 
+
+def rate_movie(request, movie_id):
+    moviex = get_object_or_404(Movie, pk=movie_id)
+    try:
+        ratings = Rating.objects.filter(rating_movie=moviex)
+        userx = User.objects.get(pk=request.session['user_id'])
+        for i in ratings:
+            if i.rating_user == userx:
+                return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id, )))
+        rating_number = int(request.POST['new_rating'])
+        new_rating = Rating(rating_user=userx, rating_movie=moviex, rating_number=rating_number)
+        new_rating.save()
+        sum_of_rating = moviex.movie_user_rating * len(ratings) + rating_number
+        moviex.movie_user_rating = sum_of_rating / (len(ratings) + 1)
+        moviex.save()
+    except:
+        pass
+    return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id, )))
+
+
+def get_rating_in_stars_list(rating):
+    counter = int(rating)
+    stars = [2 for i in range(counter)]
+    if counter < rating:
+        stars.append(1 if rating >= float(counter) + 0.5 else 0)
+    if counter < rating:
+        counter += 1
+    for i in range(10 - counter):
+        stars.append(0)
+    return stars
 
 # Create your views here.
