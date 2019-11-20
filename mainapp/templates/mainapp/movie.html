@@ -284,6 +284,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             {% endif %}
         </div>
         <hr>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <div class="">
             {% if comments %}
             <p><strong>Комментарии: </strong></p>
@@ -302,12 +303,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </form>
                 </div>
                 {% endif %}
+
+                <div class="likes">
+                  <span id="likenumbers">Понравилось:
+                      {% if comment.comment_liked_users %}
+                        {{ comment.comment_liked_users.count }}
+                      {% else %}
+                        0
+                      {% endif %}
+                  </span>
+                  {% if user %}
+                    {% if user in comment.comment_liked_users.all %}
+                      <a class="likecommentbutton_liked" id="likecomment{{ comment.id }}" name="{{ comment.id }}">Нравится</a>
+                    {% else %}
+                      <a class="likecommentbutton" id="likecomment{{ comment.id }}" name="{{ comment.id }}">Нравится</a>
+                    {% endif %}
+                  {% endif %}
+                </div>
                 <hr>
             </div>
             {% endfor %}
             {% else %}
             <div><p style="text-align: center">Пока этот фильм никто не комментировал. Будьте первым</p></div>
             {% endif %}
+            <script type="text/javascript">
+              $('.likecommentbutton').click(function(){
+                var comm_id = $(this).attr("name");
+                $.ajax(
+                {
+                  type:"GET",
+                  url: "{% url 'mainapp:like_comment'%}",
+                  data:{
+                    comment_id: comm_id
+                  },
+                  success: function( data )
+                  {
+                    $('#likecomment'+comm_id).addClass('likecommentbutton_liked').removeClass('likecommentbutton');
+                  }
+
+                })
+              });
+                $('.likecommentbutton_liked').click(function(){
+                  var comm_id = $(this).attr("name");
+                  $.ajax(
+                  {
+                    type:"GET",
+                    url: "{% url 'mainapp:delete_like_comment'%}",
+                    data:{
+                      comment_id: comm_id
+                    },
+                    success: function( data )
+                    {
+                      $('#likecomment'+comm_id).addClass('likecommentbutton').removeClass('likecommentbutton_liked');
+                    }
+
+                  })
+                });
+            </script>
         </div>
     </div>
 </div>

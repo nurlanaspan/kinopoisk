@@ -119,3 +119,42 @@ a:hover {
   color: black;
   background: #02a388;
 }
+.likes{
+  margin-top: 20px;
+}
+.likecommentbutton{
+  font-family: 'Franklin Gothic Medium';
+  border: 2px solid #888;
+  color: #888;
+  font-size
+  border-radius: 2px;
+  padding: 5px;
+  cursor: pointer;
+
+}
+.likecommentbutton:hover{
+  border-color: #02a388;
+  color: #02a388;
+}
+#likenumbers{
+  font-family: 'Franklin Gothic Medium';
+  margin: 10px;
+}
+.likecommentbutton_liked{
+  font-family: 'Franklin Gothic Medium';
+  border: 2px solid #02a388;
+  color: white;
+  background: #02a388;
+  font-size
+  border-radius: 2px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.ban_button{
+  padding: 10px 5px;
+  background: red;
+}
+.reports{
+  color: black;
+}

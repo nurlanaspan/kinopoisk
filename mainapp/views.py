@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 import datetime
 
@@ -140,6 +140,43 @@ def delete_comment(request, movie_id):
     #return render(request, "mainapp/movie.html", context)
 
 
+def like_comment(request):
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+
+    try:
+        comment_id = request.GET['comment_id']
+        comment = Comment.objects.get(pk=comment_id)
+
+        print("Its ok!!!!!!!!!")
+        comment.comment_liked_users.add(user)
+        comment.save()
+        print(comment)
+        return HttpResponse("Success!")
+    except:
+        return HttpResponse("Error!")
+
+def delete_like_comment(request):
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+
+    try:
+        comment_id = request.GET['comment_id']
+        comment = Comment.objects.get(pk=comment_id)
+
+        print("Its ok!!!!!!!!!")
+        userx = comment.comment_liked_users.all().get(pk = user.id)
+        print(userx)
+        comment.comment_liked_users.remove(user)
+        comment.save()
+        print(comment)
+        return HttpResponse("Success!")
+    except:
+        return HttpResponse("Error!")
 
 def search(request):
     user = None
@@ -181,7 +218,8 @@ def post_comment(request):
 
 def user(request, userx_id):
     userx = get_object_or_404(User, pk=userx_id)
-    context = {'userx': userx, 'user': None}
+    reports = Report.objects.filter(report_to_user = userx)
+    context = {'userx': userx, 'user': None, 'reports': reports}
 
     try:
         user = User.objects.get(pk=request.session['user_id'])

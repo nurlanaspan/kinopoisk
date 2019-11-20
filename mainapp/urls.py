@@ -15,4 +15,6 @@ urlpatterns = [
     path('user/ban/<int:userx_id>', views.ban_user, name="ban_user"),
     path('movie/delete_comment/<int:movie_id>', views.delete_comment, name="delete_comment"),
     path('rate_movie/<int:movie_id>', views.rate_movie, name="rate_movie"),
+    path('movie/like_comment/', views.like_comment, name="like_comment"),
+    path('movie/delete_like_comment/', views.like_comment, name="delete_like_comment"),
 ]
