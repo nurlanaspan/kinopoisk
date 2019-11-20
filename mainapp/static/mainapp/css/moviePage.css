@@ -159,5 +159,8 @@ a:hover {
   color: black;
 }
 .reportuser{
-  
+  padding: 5px 10px;
+  background: red;
+  cursor: pointer;
+  margin-top: 80px;
 }

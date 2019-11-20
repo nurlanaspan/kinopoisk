@@ -219,25 +219,29 @@ def post_comment(request):
 def user(request, userx_id):
     userx = get_object_or_404(User, pk=userx_id)
     reports = Report.objects.filter(report_to_user = userx)
-    context = {'userx': userx, 'user': None, 'reports': reports}
+
+
+    context = {'userx': userx, 'user': None, 'reports': reports, 'reported': None}
 
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
-        print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+
+        for i in reports:
+            if i.report_from_user == user:
+                context['reported'] = True
     except:
         pass
     return render(request, "mainapp/user.html", context)
 
 
 def report_user(request):
-    print("xxxxxxxxxxxxxxxxxxxxxxx")
     try:
         userx_id = request.GET['user_id']
         userx = get_object_or_404(User, pk=userx_id)
     except:
         return HttpResponse("Error")
-    
+
     try:
         user = User.objects.get(pk=request.session['user_id'])
     except:

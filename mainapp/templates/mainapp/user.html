@@ -221,17 +221,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		              <input type="submit" value="Разбанить" style="background: red; color: white; border: none; padding: 10px;">
 								</form>
 					{% else %}
-	            <form class="" action="{% url 'mainapp:ban_user' userx.id %}" method="post">
+	            <form class="" action="{% url 'mainapp:ban_user' userx.id %}" method="post" style="margin: 20px">
 								{% csrf_token %}
 	              <input type="hidden" name="banuser" value="{{ userx.id }}">
 	              <input type="submit" value="Забанить" style="background: red; color: white; border: none; padding: 10px;">
 							</form>
 					{% endif %}
 				{% endif %}
-				<a class="reportuser" id="report" name="{{ userx.id }}">Пожаловаться</a>
+				{% if reported %}
+					<p style='color: red'>Вы уже пожаловались на этого пользователя</p>
+				{% else %}
+					<a class="reportuser" id="report" name="{{ userx.id }}">Пожаловаться</a>
+					<p id='reportmessage'></p>
+				{% endif %}
 			{% endif %}
           </div>
-			
+
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		  <script type="text/javascript">
 			$('.reportuser').click(function(){
@@ -245,12 +250,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				success: function( data )
 				{
-				  $('#likecomment'+comm_id).addClass('likecommentbutton_liked').removeClass('likecommentbutton');
+				  $('#report').css('visibility', 'hidden')
+					$('#reportmessage').text('Ваша жалоба отправлена, и будет рассмотрена администраторами сайта')
 				}
 
 			  })
 			});
-		  </script>		
+		  </script>
         </div>
       </div>
 
