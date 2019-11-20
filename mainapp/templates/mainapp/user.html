@@ -228,11 +228,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 					{% endif %}
 				{% endif %}
+				<a class="reportuser" id="report" name="{{ userx.id }}">Пожаловаться</a>
 			{% endif %}
           </div>
-					<div class="">
-						<a href=""></a>
-					</div>
+			
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		  <script type="text/javascript">
+			$('.reportuser').click(function(){
+			  var userid = $(this).attr("name");
+			  $.ajax(
+			  {
+				type:"GET",
+				url: "{% url 'mainapp:report_user'%}",
+				data:{
+				  user_id: userid
+				},
+				success: function( data )
+				{
+				  $('#likecomment'+comm_id).addClass('likecommentbutton_liked').removeClass('likecommentbutton');
+				}
+
+			  })
+			});
+		  </script>		
         </div>
       </div>
 

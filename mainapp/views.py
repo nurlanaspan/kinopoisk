@@ -230,6 +230,25 @@ def user(request, userx_id):
     return render(request, "mainapp/user.html", context)
 
 
+def report_user(request):
+    print("xxxxxxxxxxxxxxxxxxxxxxx")
+    try:
+        userx_id = request.GET['user_id']
+        userx = get_object_or_404(User, pk=userx_id)
+    except:
+        return HttpResponse("Error")
+    
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    report = Report(report_from_user=user, report_to_user=userx)
+    report.save()
+
+    return HttpResponse("It's ok!")
+
+
+
 def ban_user(request, userx_id):
     print('sdsddskdkgmlskdjflksdljfklsjdfjsd')
     context = {'user': None}
