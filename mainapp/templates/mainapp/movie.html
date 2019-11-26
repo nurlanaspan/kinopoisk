@@ -249,6 +249,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 {% endfor %}
             </ul>
         </div>
+    		<div>
+    			<form method="post" action="{% url 'mainapp:rate_movie' movie.id%}">
+    				{% csrf_token %}
+    				<input type="radio" name="new_rating" value="1">
+    				<input type="radio" name="new_rating" value="2">
+    				<input type="radio" name="new_rating" value="3">
+    				<input type="radio" name="new_rating" value="4">
+    				<input type="radio" name="new_rating" value="5">
+    				<input type="radio" name="new_rating" value="6">
+    				<input type="radio" name="new_rating" value="7">
+    				<input type="radio" name="new_rating" value="8">
+    				<input type="radio" name="new_rating" value="9">
+    				<input type="radio" name="new_rating" value="10">
+    				<input type="submit" value="Оценить">
+    			</form>
+    		</div>
     <div class="addtofavorite">
       {% if user %}
         {% if favorite %}
@@ -258,6 +274,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         {% endif %}
       {% endif %}
     </div>
+  <div class="addtowl">
+    {% if user %}
+      {% if watchlater %}
+        <a class="deletefromwlbutton">Удалить из списка "Посмотреть позже"</a>
+      {% else %}
+        <a class="addtowlbutton">Посмотреть позже</a>
+      {% endif %}
+    {% endif %}
+  </div>
     <script type="text/javascript">
       $('.addtofavoritebutton').click(function(){
         $.ajax(
@@ -275,23 +300,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         })
       });
+      $('.addtowlbutton').click(function(){
+        $.ajax(
+        {
+          type:"GET",
+          url: "{% url 'mainapp:add_to_wl'%}",
+          data:{
+            movie_id: {{ movie.id }}
+          },
+          success: function( data )
+          {
+            $('.addtowlbutton').text('Удалить из списка "Посмотреть позже"');
+            $('.addtowlbutton').addClass('deletefromwlbutton').removeClass('addtowlbutton');
+          }
+        })
+      });
+      $('.deletefromwlbutton').click(function(){
+        $.ajax(
+        {
+          type:"GET",
+          url: "{% url 'mainapp:delete_from_wl'%}",
+          data:{
+            movie_id: {{ movie.id }}
+          },
+          success: function( data )
+          {
+            $('.deletefromwlbutton').text('Посмотреть позже');
+            $('.deletefromwlbutton').addClass('addtowlbutton').removeClass('deletefromwlbutton');
+          }
+        })
+      });
     </script>
-		<div>
-			<form method="post" action="{% url 'mainapp:rate_movie' movie.id%}">
-				{% csrf_token %}
-				<input type="radio" name="new_rating" value="1">
-				<input type="radio" name="new_rating" value="2">
-				<input type="radio" name="new_rating" value="3">
-				<input type="radio" name="new_rating" value="4">
-				<input type="radio" name="new_rating" value="5">
-				<input type="radio" name="new_rating" value="6">
-				<input type="radio" name="new_rating" value="7">
-				<input type="radio" name="new_rating" value="8">
-				<input type="radio" name="new_rating" value="9">
-				<input type="radio" name="new_rating" value="10">
-				<input type="submit" value="Оценить">
-			</form>
-		</div>
         <div id="movieReview">
             <hr style="border: 2px solid #02a388; width: 100%; margin-top: 40px; margin-bottom: 20px;">
             {% if user %}

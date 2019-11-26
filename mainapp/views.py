@@ -112,7 +112,7 @@ def movie(request, movie_id):
     stars = get_rating_in_stars_list(moviex.movie_user_rating)
 
     context = {'movie': moviex, 'genres': genres, 'countries': countries, 'genresx': genresx, 'countriesx': countriesx, 'comments': comments,
-               'user': None, 'stars': stars, 'favorite': None}
+               'user': None, 'stars': stars, 'favorite': None, 'watchlater': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -122,6 +122,12 @@ def movie(request, movie_id):
     try:
         favorite = Favorite.objects.get(favorite_user=user, favorite_movie=moviex)
         context['favorite'] = '+'
+    except:
+        pass
+
+    try:
+        wl = WatchLater.objects.get(wl_user=user, wl_movie=moviex)
+        context['watchlater'] = '+'
     except:
         pass
 
@@ -236,7 +242,7 @@ def user(request, userx_id):
     reports = Report.objects.filter(report_to_user = userx)
 
     context = {'userx': userx, 'user': None, 'genres': genres, 'countries': countries,'reports': reports, 'reported': None,
-               'favorites': None, 'recommends': None}
+               'favorites': None, 'recommends': None, 'watchlater': None}
 
     try:
         favorites = Favorite.objects.filter(favorite_user=userx)
@@ -245,6 +251,13 @@ def user(request, userx_id):
         context['recommends'] = recommends
     except:
         pass
+
+    try:
+        wl = WatchLater.objects.filter(wl_user=userx)
+        context['watchlater'] = wl
+    except:
+        pass
+
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -275,7 +288,6 @@ def report_user(request):
 
 
 def add_to_favorite(request):
-    print('cococcococo')
     try:
         moviex_id = request.GET['movie_id']
         moviex = get_object_or_404(Movie, pk=moviex_id)
@@ -285,7 +297,7 @@ def add_to_favorite(request):
     try:
         user = User.objects.get(pk=request.session['user_id'])
     except:
-        pass
+        return HttpResponse("Error")
 
 
     favorite = Favorite(favorite_user=user, favorite_movie=moviex)
@@ -294,9 +306,44 @@ def add_to_favorite(request):
     return HttpResponse("It's ok!")
 
 
+def add_to_wl(request):
+    try:
+        moviex_id = request.GET['movie_id']
+        moviex = get_object_or_404(Movie, pk=moviex_id)
+    except:
+        return HttpResponse("Error")
+
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        return HttpResponse("Error")
+
+    wl = WatchLater(wl_user=user, wl_movie=moviex)
+    wl.save()
+
+    return HttpResponse("It's ok!")
+
+def delete_from_wl(request):
+    try:
+        moviex_id = request.GET['movie_id']
+        moviex = get_object_or_404(Movie, pk=moviex_id)
+    except:
+        return HttpResponse("Error")
+
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        return HttpResponse("Error")
+
+    try:
+        wl = WatchLater.objects.get(wl_user=user, wl_movie=moviex)
+        wl.delete()
+        return HttpResponse("It's okay")
+    except:
+        return HttpResponse("Error")
+
 
 def ban_user(request, userx_id):
-    print('sdsddskdkgmlskdjflksdljfklsjdfjsd')
     context = {'user': None}
 
     try:

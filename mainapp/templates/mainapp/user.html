@@ -253,6 +253,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					{% if user %}
 						{% if user == userx %}
+							{% if watchlater %}
+								<div class="wllist">
+										<h2>Посмотреть позже </h2>
+										<div>
+										{% for wl in watchlater %}
+											<p><a href="{% url 'mainapp:movie' wl.wl_movie.id %}"> {{ wl.wl_movie.movie_name }} <span>( {{ wl.wl_movie.movie_date }} )</span> </a></p>
+										{% endfor %}
+										</div>
+								</div>
+							{% endif %}
 							<div class="recommends">
 								{% if recommends %}
 									<h2>КиноПоиск рекоммендует: </h2>

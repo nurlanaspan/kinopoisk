@@ -217,3 +217,42 @@ a:hover {
   font-weight: bold;
   font-size: 16px;
 }
+
+.addtowl{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.addtowlbutton{
+  cursor: pointer;
+  background: #02a388;
+  padding: 10px;
+}
+.addtowlbutton:hover{
+  color: white;
+}
+.deletefromwlbutton{
+  cursor: pointer;
+  background: #ff2400;
+  padding: 10px;
+  color: white;
+}
+.deletefromwlbutton:hover{
+  color: black;
+}
+.wllist{
+  margin: 20px;
+  border: 2px solid silver;
+  padding: 10px;
+}
+.wllist h2{
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #02a388;
+}
+.wllist div{
+  margin-left: 50px;
+}
+.wllist div a{
+  font-weight: bold;
+  font-size: 16px;
+}

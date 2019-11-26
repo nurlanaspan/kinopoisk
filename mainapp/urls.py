@@ -18,5 +18,7 @@ urlpatterns = [
     path('movie/like_comment/', views.like_comment, name="like_comment"),
     path('movie/delete_like_comment/', views.like_comment, name="delete_like_comment"),
     path('user/report_user', views.report_user, name="report_user"),
-    path('movie/add_to_favorite', views.add_to_favorite, name="add_to_favorite")
+    path('movie/add_to_favorite', views.add_to_favorite, name="add_to_favorite"),
+    path('movie/add_to_wl', views.add_to_wl, name="add_to_wl"),
+    path('movie/delete_from_wl', views.delete_from_wl, name="delete_from_wl")
 ]
