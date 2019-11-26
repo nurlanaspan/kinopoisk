@@ -227,9 +227,14 @@ def user(request, userx_id):
     userx = get_object_or_404(User, pk=userx_id)
     reports = Report.objects.filter(report_to_user = userx)
 
+    context = {'userx': userx, 'user': None, 'reports': reports, 'reported': None, 'faovrites':None}
 
-    context = {'userx': userx, 'user': None, 'reports': reports, 'reported': None}
-
+    try:
+        favorites = Favorite.objects.filter(favorite_user=userx)
+        print(favorites)
+        context['favorites'] = favorites
+    except:
+        pass
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user

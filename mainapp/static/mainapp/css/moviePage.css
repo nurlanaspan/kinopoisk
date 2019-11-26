@@ -1,6 +1,6 @@
 #wrapper {
     width: 1000px;
-    min-height: 1400px;
+    min-height: 500px;
     //outline: 1px solid red;
     padding: 1px 10px;
     margin: 25px auto;
@@ -182,4 +182,21 @@ a:hover {
 }
 .addtofavoritebutton_added:hover{
   color: black;
+}
+.favoritemovies{
+  margin: 20px;
+  border: 2px solid silver;
+  padding: 10px;
+}
+.favoritemovies h2{
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #02a388;
+}
+.favoritemovies div{
+  margin-left: 50px;
+}
+.favoritemovies div a{
+  font-weight: bold;
+  font-size: 16px;
 }
