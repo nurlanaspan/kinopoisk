@@ -107,12 +107,19 @@ def movie(request, movie_id):
     comments = Comment.objects.filter(comment_movie=moviex)
     stars = get_rating_in_stars_list(moviex.movie_user_rating)
     context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,
-               'user': None, 'stars': stars}
+               'user': None, 'stars': stars, 'favorite': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
     except:
         pass
+
+    try:
+        favorite = Favorite.objects.get(favorite_user=user, favorite_movie=moviex)
+        context['favorite'] = '+'
+    except:
+        pass
+
     return render(request, "mainapp/movie.html", context)
 
 
@@ -252,6 +259,26 @@ def report_user(request):
     return HttpResponse("It's ok!")
 
 
+def add_to_favorite(request):
+    print('cococcococo')
+    try:
+        moviex_id = request.GET['movie_id']
+        moviex = get_object_or_404(Movie, pk=moviex_id)
+    except:
+        return HttpResponse("Error")
+
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+
+
+    favorite = Favorite(favorite_user=user, favorite_movie=moviex)
+    favorite.save()
+
+    return HttpResponse("It's ok!")
+
+
 
 def ban_user(request, userx_id):
     print('sdsddskdkgmlskdjflksdljfklsjdfjsd')
@@ -302,6 +329,7 @@ def rate_movie(request, movie_id):
     return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id, )))
 
 
+
 def get_rating_in_stars_list(rating):
     counter = int(rating)
     stars = [2 for i in range(counter)]
@@ -312,5 +340,7 @@ def get_rating_in_stars_list(rating):
     for i in range(10 - counter):
         stars.append(0)
     return stars
+
+
 
 # Create your views here.

@@ -17,5 +17,6 @@ urlpatterns = [
     path('rate_movie/<int:movie_id>', views.rate_movie, name="rate_movie"),
     path('movie/like_comment/', views.like_comment, name="like_comment"),
     path('movie/delete_like_comment/', views.like_comment, name="delete_like_comment"),
-    path('user/report_user', views.report_user, name="report_user")
+    path('user/report_user', views.report_user, name="report_user"),
+    path('movie/add_to_favorite', views.add_to_favorite, name="add_to_favorite")
 ]

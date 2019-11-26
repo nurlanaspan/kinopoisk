@@ -91,3 +91,8 @@ class Comment(models.Model):
     # dislikes
     comment_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     comment_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
+
+
+class Favorite(models.Model):
+    favorite_user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    favorite_movie = models.ForeignKey(Movie, on_delete=models.CASCADE, default=None)

@@ -164,3 +164,22 @@ a:hover {
   cursor: pointer;
   margin-top: 80px;
 }
+.addtofavorite{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.addtofavoritebutton{
+  cursor: pointer;
+  background: #02a388;
+  padding: 10px;
+}
+.addtofavoritebutton:hover{
+  color: white;
+}
+.addtofavoritebutton_added{
+  background: #777;
+  padding: 10px;
+}
+.addtofavoritebutton_added:hover{
+  color: black;
+}
