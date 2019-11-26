@@ -228,11 +228,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 					{% endif %}
 				{% endif %}
-				{% if reported %}
-					<p style='color: red'>Вы уже пожаловались на этого пользователя</p>
-				{% else %}
-					<a class="reportuser" id="report" name="{{ userx.id }}">Пожаловаться</a>
-					<p id='reportmessage'></p>
+				{% if userx != user %}
+					{% if reported %}
+						<p style='color: red'>Вы уже пожаловались на этого пользователя</p>
+					{% else %}
+						<a class="reportuser" id="report" name="{{ userx.id }}">Пожаловаться</a>
+						<p id='reportmessage'></p>
+					{% endif %}
 				{% endif %}
 			{% endif %}
           </div>
@@ -244,11 +246,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							{% for f in favorites %}
 								<p><a href="{% url 'mainapp:movie' f.favorite_movie.id %}"> {{ f.favorite_movie.movie_name }} </a></p>
 							{% endfor %}
+							</div>
 						{% else %}
 							<p>У пользователя нет любимых фильмов</p>
 						{% endif %}
-						</div>
 					</div>
+					{% if user %}
+						{% if user == userx %}
+							<div class="recommends">
+								{% if recommends %}
+									<h2>КиноПоиск рекоммендует: </h2>
+									<div>
+									{% for r in recommends %}
+										<p><a href="{% url 'mainapp:movie' r.id %}"> {{ r.movie_name }} <span>( {{ r.movie_date }} )</span> </a></p>
+									{% endfor %}
+									</div>
+								{% else %}
+									<h2> Рекомендации нет. </h2>
+								{% endif %}
+							</div>
+						{% endif %}
+					{% endif %}
 
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		  <script type="text/javascript">

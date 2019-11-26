@@ -104,9 +104,14 @@ def movie(request, movie_id):
     moviex = get_object_or_404(Movie, pk=movie_id)
     genres = moviex.movie_genres.all()
     countries = moviex.movie_country.all()
+
+    genresx = Genre.objects.all()
+    countriesx = Country.objects.all()
+
     comments = Comment.objects.filter(comment_movie=moviex)
     stars = get_rating_in_stars_list(moviex.movie_user_rating)
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,
+
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'genresx': genresx, 'countriesx': countriesx, 'comments': comments,
                'user': None, 'stars': stars, 'favorite': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
@@ -224,15 +229,20 @@ def post_comment(request):
 
 
 def user(request, userx_id):
+    genres = Genre.objects.all()
+    countries = Country.objects.all()
+
     userx = get_object_or_404(User, pk=userx_id)
     reports = Report.objects.filter(report_to_user = userx)
 
-    context = {'userx': userx, 'user': None, 'reports': reports, 'reported': None, 'faovrites':None}
+    context = {'userx': userx, 'user': None, 'genres': genres, 'countries': countries,'reports': reports, 'reported': None,
+               'favorites': None, 'recommends': None}
 
     try:
         favorites = Favorite.objects.filter(favorite_user=userx)
-        print(favorites)
         context['favorites'] = favorites
+        recommends = get_recommended_movies(favorites)
+        context['recommends'] = recommends
     except:
         pass
     try:
@@ -346,6 +356,50 @@ def get_rating_in_stars_list(rating):
         stars.append(0)
     return stars
 
+def get_recommended_movies(favorites):
+    genres = {}
+    for f in favorites:
+        f_m = f.favorite_movie
+        for g in f_m.movie_genres.all():
 
+            if g in genres:
+                genres[g] += 1
+            else:
+                genres[g] = 1
+
+    movies = Movie.objects.all()
+    list_movies = []
+    list_rating = []
+    for m in movies:
+        m_rate = 0
+        b = True
+        for f in favorites:
+            if m == f.favorite_movie:
+                b = False
+
+        if not b:
+            continue
+
+        for g in m.movie_genres.all():
+            if g in genres:
+                m_rate += genres[g]
+        if len(list_movies) < 5:
+            list_movies.append(m)
+            list_rating.append(m_rate)
+            for i in range(len(list_movies)):
+                for j in range(i):
+                    if list_rating[i] > list_rating[j] or list_rating[i] == list_rating[j] and list_movies[i].movie_user_rating > list_movies[j].movie_user_rating:
+                        list_rating[i], list_rating[j] = list_rating[j], list_rating[i]
+                        list_movies[i], list_movies[j] = list_movies[j], list_movies[i]
+        elif m_rate > list_rating[4]:
+            list_rating[4] = m_rate
+            list_movies[4] = m
+            for i in range(len(list_movies)):
+                for j in range(i):
+                    if list_rating[i] > list_rating[j]:
+                        list_rating[i], list_rating[j] = list_rating[j], list_rating[i]
+                        list_movies[i], list_movies[j] = list_movies[j], list_movies[i]
+
+    return list_movies
 
 # Create your views here.

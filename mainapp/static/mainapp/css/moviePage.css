@@ -200,3 +200,20 @@ a:hover {
   font-weight: bold;
   font-size: 16px;
 }
+.recommends{
+  margin: 20px;
+  border: 2px solid silver;
+  padding: 10px;
+}
+.recommends h2{
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #02a388;
+}
+.recommends div{
+  margin-left: 50px;
+}
+.recommends div a{
+  font-weight: bold;
+  font-size: 16px;
+}
