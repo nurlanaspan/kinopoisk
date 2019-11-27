@@ -147,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4>Логин</h4>
                 <div class="login-form">
-                    <form action="{% url 'mainapp:index' %}" method="POST">
+                    <form action="{% url 'mainapp:authentication' %}" method="POST">
                         {% csrf_token %}
                         <input type="text" name="user_login" placeholder="Логин" required="">
                         <input type="password" name="user_password" placeholder="Пароль" required="">
@@ -182,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4>Регистрация</h4>
                 <div class="login-form">
-                    <form action="{%url 'mainapp:index'%}" method="post">
+                    <form action="{%url 'mainapp:registration'%}" method="post">
                         {% csrf_token %}
                         <input type="text" name="name" placeholder="Имя" required="">
                         <input type="text" name="surname" placeholder="Фамилия" required="">

@@ -15,13 +15,22 @@ def index(request):
     print(categories)
     new_movies = Movie.objects.order_by('movie_date')[:2]
     movies_category_1 = Movie.objects.filter(movie_categories=categories[0])
+
     context = {'movies': movies,
-               'genres': genres,
-               'countries': countries,
-               'new_movies': new_movies,
-               'categories': categories,
-               'movies_category_1': movies_category_1,
-               'user': None}
+           'genres': genres,
+           'countries': countries,
+           'new_movies': new_movies,
+           'categories': categories,
+           'movies_category_1': movies_category_1,
+           'user': None,
+           'error': None}
+    try:
+        error = request.session['error']
+        context['error'] = error
+        del request.session['error']
+    except:
+        pass
+
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -39,7 +48,8 @@ def registration(request):
                'genres': genres,
                'countries': countries,
                'new_movies': new_movies,
-               'user': None}
+               'user': None,
+               'error': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -51,6 +61,19 @@ def registration(request):
         user_surname = request.POST['surname']
         user_login = request.POST['login']
         user_password = request.POST['password']
+        user_conform_password = request.POST['conform-password']
+
+        if user_password != user_conform_password:
+            request.session['error'] = "Пароль и подтверждение пароля не совпадают"
+            return HttpResponseRedirect(reverse('mainapp:index'))
+
+        try:
+            userx = User.objects.get(user_login = user_login)
+            request.session['error'] = "Имя пользователя уже занято"
+            return HttpResponseRedirect(reverse('mainapp:index'))
+        except:
+            pass
+
         user = User(user_name=user_name, user_surname=user_surname, user_login=user_login, user_password=user_password)
         user.save()
         request.session['user_id'] = user.id
@@ -73,7 +96,16 @@ def authentication(request):
     try:
         user_login = request.POST['user_login']
         user_password = request.POST['user_password']
-        user = User.objects.get(user_login=user_login)
+        try:
+            user = User.objects.get(user_login=user_login)
+        except:
+            request.session['error'] = "Неправильное имя пользователя"
+            return HttpResponseRedirect(reverse('mainapp:index'))
+
+        if user_password != user.user_password:
+            request.session['error'] = "Неверный пароль"
+            return HttpResponseRedirect(reverse('mainapp:index'))
+
         if user and user_password == user.user_password:
             request.session['user_id'] = user.id
             context['user'] = user

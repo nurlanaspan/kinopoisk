@@ -208,6 +208,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 				<!-- //Modal1 -->
 			<!--/content-inner-section-->
+			{% if error %}
+				<div style="color: red">Ошибка: {{ error }}</div>
+			{% endif %}
 			<h3 class="agile_w3_title"> <span>Новинки</span></h3>
 			<!--/movies-->
 			<div class="w3_agile_latest_movies">
