@@ -7,23 +7,7 @@ from .models import *
 
 
 def index(request):
-    movies = Movie.objects.order_by('movie_main_rating')
-    genres = Genre.objects.all()
-    countries = Country.objects.all()
-    categories = Category.objects.all()
-    first_category = Category.objects.all()[0]
-    print(categories)
-    new_movies = Movie.objects.order_by('movie_date')[:2]
-    movies_category_1 = Movie.objects.filter(movie_categories=categories[0])
-
-    context = {'movies': movies,
-           'genres': genres,
-           'countries': countries,
-           'new_movies': new_movies,
-           'categories': categories,
-           'movies_category_1': movies_category_1,
-           'user': None,
-           'error': None}
+    context = dict(create_default_context())
     try:
         error = request.session['error']
         context['error'] = error
@@ -68,7 +52,7 @@ def registration(request):
             return HttpResponseRedirect(reverse('mainapp:index'))
 
         try:
-            userx = User.objects.get(user_login = user_login)
+            userx = User.objects.get(user_login=user_login)
             request.session['error'] = "Имя пользователя уже занято"
             return HttpResponseRedirect(reverse('mainapp:index'))
         except:
@@ -143,7 +127,8 @@ def movie(request, movie_id):
     comments = Comment.objects.filter(comment_movie=moviex)
     stars = get_rating_in_stars_list(moviex.movie_user_rating)
 
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'genresx': genresx, 'countriesx': countriesx, 'comments': comments,
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'genresx': genresx, 'countriesx': countriesx,
+               'comments': comments,
                'user': None, 'stars': stars, 'favorite': None, 'watchlater': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
@@ -172,7 +157,7 @@ def delete_comment(request, movie_id):
     genres = moviex.movie_genres.all()
     countries = moviex.movie_country.all()
     comments = Comment.objects.filter(comment_movie=moviex)
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments,'user': None}
+    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'comments': comments, 'user': None}
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -187,7 +172,7 @@ def delete_comment(request, movie_id):
         pass
 
     return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id,)))
-    #return render(request, "mainapp/movie.html", context)
+    # return render(request, "mainapp/movie.html", context)
 
 
 def like_comment(request):
@@ -208,6 +193,7 @@ def like_comment(request):
     except:
         return HttpResponse("Error!")
 
+
 def delete_like_comment(request):
     try:
         user = User.objects.get(pk=request.session['user_id'])
@@ -219,7 +205,7 @@ def delete_like_comment(request):
         comment = Comment.objects.get(pk=comment_id)
 
         print("Its ok!!!!!!!!!")
-        userx = comment.comment_liked_users.all().get(pk = user.id)
+        userx = comment.comment_liked_users.all().get(pk=user.id)
         print(userx)
         comment.comment_liked_users.remove(user)
         comment.save()
@@ -227,6 +213,7 @@ def delete_like_comment(request):
         return HttpResponse("Success!")
     except:
         return HttpResponse("Error!")
+
 
 def search(request):
     user = None
@@ -240,7 +227,8 @@ def search(request):
         found_movies = []
         movies = Movie.objects.all()
         for movie in movies:
-            if movie.movie_name.lower().count(searched_text) > 0 or movie.movie_desctiption.lower().count(searched_text) > 0:
+            if movie.movie_name.lower().count(searched_text) > 0 or movie.movie_desctiption.lower().count(
+                    searched_text) > 0:
                 found_movies.append(movie)
         return render(request, "mainapp/search.html", {'found_movies': found_movies, 'user': user})
     except:
@@ -263,7 +251,7 @@ def post_comment(request):
         context['user'] = user
     except:
         pass
-    return HttpResponseRedirect(reverse('mainapp:movie', args=(moviex.id, )))
+    return HttpResponseRedirect(reverse('mainapp:movie', args=(moviex.id,)))
 
 
 def user(request, userx_id):
@@ -271,9 +259,10 @@ def user(request, userx_id):
     countries = Country.objects.all()
 
     userx = get_object_or_404(User, pk=userx_id)
-    reports = Report.objects.filter(report_to_user = userx)
+    reports = Report.objects.filter(report_to_user=userx)
 
-    context = {'userx': userx, 'user': None, 'genres': genres, 'countries': countries,'reports': reports, 'reported': None,
+    context = {'userx': userx, 'user': None, 'genres': genres, 'countries': countries, 'reports': reports,
+               'reported': None,
                'favorites': None, 'recommends': None, 'watchlater': None}
 
     try:
@@ -331,7 +320,6 @@ def add_to_favorite(request):
     except:
         return HttpResponse("Error")
 
-
     favorite = Favorite(favorite_user=user, favorite_movie=moviex)
     favorite.save()
 
@@ -354,6 +342,7 @@ def add_to_wl(request):
     wl.save()
 
     return HttpResponse("It's ok!")
+
 
 def delete_from_wl(request):
     try:
@@ -400,8 +389,8 @@ def ban_user(request, userx_id):
         print("user id barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     except:
         pass
-    return HttpResponseRedirect(reverse('mainapp:user', args=(userx_id, )))
-    #return render(request, "mainapp/user.html", context)
+    return HttpResponseRedirect(reverse('mainapp:user', args=(userx_id,)))
+    # return render(request, "mainapp/user.html", context)
 
 
 def rate_movie(request, movie_id):
@@ -411,7 +400,7 @@ def rate_movie(request, movie_id):
         userx = User.objects.get(pk=request.session['user_id'])
         for i in ratings:
             if i.rating_user == userx:
-                return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id, )))
+                return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id,)))
         rating_number = int(request.POST['new_rating'])
         new_rating = Rating(rating_user=userx, rating_movie=moviex, rating_number=rating_number)
         new_rating.save()
@@ -420,8 +409,49 @@ def rate_movie(request, movie_id):
         moviex.save()
     except:
         pass
-    return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id, )))
+    return HttpResponseRedirect(reverse('mainapp:movie', args=(movie_id,)))
 
+
+def movies_by_genre(request, genre_id):
+    context = dict(create_default_context())
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    genre = Genre.objects.get(pk=genre_id)
+    found_movies = Movie.objects.filter(movie_genres=genre)
+    context['found_movies'] = found_movies
+    context['user'] = user
+    return render(request, "mainapp/search.html", context)
+
+
+def movies_by_country(request, country_id):
+    context = dict(create_default_context())
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    country = Country.objects.get(pk=country_id)
+    found_movies = Movie.objects.filter(movie_country=country)
+    context['found_movies'] = found_movies
+    context['user'] = user
+    return render(request, "mainapp/search.html", context)
+
+
+def movies_by_category(request, category_id):
+    context = dict(create_default_context())
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    category = Category.objects.get(pk=category_id)
+    found_movies = Movie.objects.filter(movie_categories=category)
+    context['found_movies'] = found_movies
+    context['user'] = user
+    return render(request, "mainapp/search.html", context)
 
 
 def get_rating_in_stars_list(rating):
@@ -434,6 +464,7 @@ def get_rating_in_stars_list(rating):
     for i in range(10 - counter):
         stars.append(0)
     return stars
+
 
 def get_recommended_movies(favorites):
     genres = {}
@@ -467,7 +498,8 @@ def get_recommended_movies(favorites):
             list_rating.append(m_rate)
             for i in range(len(list_movies)):
                 for j in range(i):
-                    if list_rating[i] > list_rating[j] or list_rating[i] == list_rating[j] and list_movies[i].movie_user_rating > list_movies[j].movie_user_rating:
+                    if list_rating[i] > list_rating[j] or list_rating[i] == list_rating[j] and list_movies[
+                        i].movie_user_rating > list_movies[j].movie_user_rating:
                         list_rating[i], list_rating[j] = list_rating[j], list_rating[i]
                         list_movies[i], list_movies[j] = list_movies[j], list_movies[i]
         elif m_rate > list_rating[4]:
@@ -481,4 +513,20 @@ def get_recommended_movies(favorites):
 
     return list_movies
 
-# Create your views here.
+
+def create_default_context():
+    movies = Movie.objects.order_by('movie_main_rating')
+    genres = Genre.objects.all()
+    countries = Country.objects.all()
+    categories = Category.objects.all()
+    new_movies = Movie.objects.order_by('movie_date')[:2]
+    movies_category_1 = Movie.objects.filter(movie_categories=categories[0])
+    context = {'movies': movies,
+               'genres': genres,
+               'countries': countries,
+               'new_movies': new_movies,
+               'categories': categories,
+               'movies_category_1': movies_category_1,
+               'user': None,
+               'error': None}
+    return context

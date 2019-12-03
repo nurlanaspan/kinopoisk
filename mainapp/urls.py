@@ -20,5 +20,8 @@ urlpatterns = [
     path('user/report_user', views.report_user, name="report_user"),
     path('movie/add_to_favorite', views.add_to_favorite, name="add_to_favorite"),
     path('movie/add_to_wl', views.add_to_wl, name="add_to_wl"),
-    path('movie/delete_from_wl', views.delete_from_wl, name="delete_from_wl")
+    path('movie/delete_from_wl', views.delete_from_wl, name="delete_from_wl"),
+    path('movies_by_genre/<int:genre_id>', views.movies_by_genre, name="movies_by_genre"),
+    path('movies_by_country/<int:country_id>', views.movies_by_country, name="movies_by_country"),
+    path('movies_by_category/<int:category_id>', views.movies_by_category, name="movies_by_category"),
 ]
