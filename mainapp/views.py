@@ -118,18 +118,37 @@ def exit_from_account(request):
 
 def movie(request, movie_id):
     moviex = get_object_or_404(Movie, pk=movie_id)
-    genres = moviex.movie_genres.all()
-    countries = moviex.movie_country.all()
+    # genres = moviex.movie_genres.all()
+    # countries = moviex.movie_country.all()
+    # # people = Person.objects.filter()
+    # genresx = Genre.objects.all()
+    # countriesx = Country.objects.all()
+    context = dict(create_default_context())
 
-    genresx = Genre.objects.all()
-    countriesx = Country.objects.all()
+    producers_raw = PersonMovie.objects.filter(movie=moviex, role='Producer')
+    actors_raw = PersonMovie.objects.filter(movie=moviex, role='Actor')
+
+    producers = []
+    for producer_raw in producers_raw:
+        producers.append(Person.objects.get(pk=producer_raw.person.id))
+
+    actors = []
+    for actor_raw in actors_raw:
+        actors.append(Person.objects.get(pk=actor_raw.person.id))
+
+    print(producers)
+    print(actors)
 
     comments = Comment.objects.filter(comment_movie=moviex)
     stars = get_rating_in_stars_list(moviex.movie_user_rating)
 
-    context = {'movie': moviex, 'genres': genres, 'countries': countries, 'genresx': genresx, 'countriesx': countriesx,
-               'comments': comments,
-               'user': None, 'stars': stars, 'favorite': None, 'watchlater': None}
+    context['movie'] = moviex
+    context['comments'] = comments
+    context['stars'] = stars
+    context['favorite'] = None
+    context['watchlater'] = None
+    context['actors'] = actors
+    context['producers'] = producers
     try:
         user = User.objects.get(pk=request.session['user_id'])
         context['user'] = user
@@ -265,6 +284,8 @@ def user(request, userx_id):
                'reported': None,
                'favorites': None, 'recommends': None, 'watchlater': None}
 
+    user = None
+
     try:
         favorites = Favorite.objects.filter(favorite_user=userx)
         context['favorites'] = favorites
@@ -288,6 +309,13 @@ def user(request, userx_id):
                 context['reported'] = True
     except:
         pass
+    comments = Comment.objects.filter(comment_user=user)
+    counter = 0
+    for comment in comments:
+        counter += 1
+        counter += len(comment.comment_liked_users.all()) * 2
+    counter -= len(Report.objects.filter(report_to_user=user)) * 2
+    context['counter'] = counter
     return render(request, "mainapp/user.html", context)
 
 
@@ -449,6 +477,20 @@ def movies_by_category(request, category_id):
         pass
     category = Category.objects.get(pk=category_id)
     found_movies = Movie.objects.filter(movie_categories=category)
+    context['found_movies'] = found_movies
+    context['user'] = user
+    return render(request, "mainapp/search.html", context)
+
+
+def movies_by_person(request, person_id):
+    context = dict(create_default_context())
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    persons = Person.objects.get(pk=person_id)
+    found_movies = Movie.objects.filter(movie_persons=persons)
     context['found_movies'] = found_movies
     context['user'] = user
     return render(request, "mainapp/search.html", context)

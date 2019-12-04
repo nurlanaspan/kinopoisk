@@ -24,4 +24,5 @@ urlpatterns = [
     path('movies_by_genre/<int:genre_id>', views.movies_by_genre, name="movies_by_genre"),
     path('movies_by_country/<int:country_id>', views.movies_by_country, name="movies_by_country"),
     path('movies_by_category/<int:category_id>', views.movies_by_category, name="movies_by_category"),
+    path('movies_by_person/<int:person_id>', views.movies_by_person, name="movies_by_person")
 ]
