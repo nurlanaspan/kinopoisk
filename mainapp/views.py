@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 import datetime
+from random import randint
 
 from .models import *
 
@@ -20,6 +21,11 @@ def index(request):
         context['user'] = user
     except:
         pass
+    stars = []
+    for movie in context['movies']:
+        stars.append(get_rating_in_stars_list(movie.movie_user_rating / 2)[0:5])
+    item_list = zip(context['movies'], stars)
+    context['item_list'] = item_list
     return render(request, "mainapp/index.html", context)
 
 
@@ -317,6 +323,13 @@ def user(request, userx_id):
     counter -= len(Report.objects.filter(report_to_user=user)) * 2
     context['counter'] = counter
     return render(request, "mainapp/user.html", context)
+
+
+def random_movie(request):
+    movies = list(Movie.objects.all())
+    moviex = movies[randint(0, len(movies) - 1)]
+    print(moviex)
+    return HttpResponseRedirect(reverse('mainapp:movie', args=(moviex.id,)))
 
 
 def report_user(request):
