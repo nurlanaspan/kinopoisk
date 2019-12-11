@@ -1,7 +1,12 @@
 from django.urls import path
 from . import views
+from kinopoisk import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 app_name = 'mainapp'
+
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -25,5 +30,9 @@ urlpatterns = [
     path('movies_by_country/<int:country_id>', views.movies_by_country, name="movies_by_country"),
     path('movies_by_category/<int:category_id>', views.movies_by_category, name="movies_by_category"),
     path('movies_by_person/<int:person_id>', views.movies_by_person, name="movies_by_person"),
-    path('random_movie', views.random_movie, name="random_movie")
+    path('random_movie', views.random_movie, name="random_movie"),
+    path('add_new_movie', views.add_new_movie, name='add_new_movie'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

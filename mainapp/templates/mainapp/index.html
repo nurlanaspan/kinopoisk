@@ -14,7 +14,12 @@
 					{% for item in item_list %}
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
-							<a href="{% url 'mainapp:movie' item.0.id %}" class="hvr-sweep-to-bottom"><img src="{% static item.0.movie_url_image %}" title="KinoPoisk" class="img-responsive" alt=" " />
+							<a href="{% url 'mainapp:movie' item.0.id %}" class="hvr-sweep-to-bottom">
+								{% if item.0.movie_image %}
+								<img src="{{ item.0.movie_image.url }}" alt="Djoker" width="283px" height="390px"/>
+								{% else %}
+								<img src="{% static item.0.movie_url_image %}" alt="Djoker" width="283px" height="390px"/>
+								{% endif %}
 								<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
@@ -52,7 +57,12 @@
 				 <div class="wthree_agile-requested-movies">
 					 				{% for movie in movies_category_1 %}
 									<div class="col-md-2 w3l-movie-gride-agile requested-movies">
-														<a href="{% url 'mainapp:movie' movie.id%}" class="hvr-sweep-to-bottom"><img src="{% static movie.movie_url_image %}" title="Movies Pro" class="img-responsive" alt=" ">
+														<a href="{% url 'mainapp:movie' movie.id%}" class="hvr-sweep-to-bottom">
+															{% if movie.movie_image %}
+															<img src="{{ movie.movie_image.url }}" title="Movies Pro" class="img-responsive" alt="Djoker" width="283px" height="390px">
+															{% else %}
+															<img src="{% static movie.movie_url_image %}" title="Movies Pro" class="img-responsive" alt="Djoker" width="283px" height="390px">
+															{% endif %}
 															<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
 														</a>
 															<div class="mid-1 agileits_w3layouts_mid_1_home">

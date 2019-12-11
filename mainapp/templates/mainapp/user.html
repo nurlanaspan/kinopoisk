@@ -7,7 +7,16 @@
       <div id="wrapper">
         <div id="movieTitle"><h2>Пользователь: {{ userx.user_login }}</h2></div>
         <div id="movieContent">
-          <div id="moviePhoto"><img src="{% static userx.user_url_image %}" alt="Djoker" width="283px" height="390px"></div>
+			{% if userx.user_image %}
+			<div id="moviePhoto"><img src="{{userx.user_image.url}}" alt="Djoker" width="283px"  style="padding: 20px;"></div>
+			{% else %}
+          	<div id="moviePhoto"><img src="{% static userx.user_url_image %}" alt="Djoker" width="283px" height="390px"></div>
+			{% endif %}
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value="upload">
+			</form>
           <p>
             <strong>Имя: </strong>{{ userx.user_name }}<br>
             <strong>Фамилия: </strong><a href="#">{{userx.user_surname}}</a><br>
@@ -34,8 +43,9 @@
 	              <input type="submit" value="Забанить" style="background: red; color: white; border: none; padding: 10px;">
 							</form>
 					{% endif %}
-				{% endif %}
-				{% if userx != user %}
+			  	<a href="{% url 'mainapp:add_new_movie' %}"> Добавить новый фильм </a>
+			  {% endif %}
+			  {% if userx != user %}
 					{% if reported %}
 						<p style='color: red'>Вы уже пожаловались на этого пользователя</p>
 					{% else %}

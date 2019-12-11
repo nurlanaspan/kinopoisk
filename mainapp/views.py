@@ -5,6 +5,7 @@ import datetime
 from random import randint
 
 from .models import *
+from .forms import *
 
 
 def index(request):
@@ -315,6 +316,15 @@ def user(request, userx_id):
                 context['reported'] = True
     except:
         pass
+
+    if request.method == 'POST':
+        form = UploadImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data.get("image")
+            user.user_image = image
+            user.save()
+    context['form'] = UploadImageForm()
+
     comments = Comment.objects.filter(comment_user=user)
     counter = 0
     for comment in comments:
@@ -507,6 +517,25 @@ def movies_by_person(request, person_id):
     context['found_movies'] = found_movies
     context['user'] = user
     return render(request, "mainapp/search.html", context)
+
+
+def add_new_movie(request):
+    form = CreateMovieForm(request.POST or None, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return render(request, "mainapp/add_movie.html", {'form': form})
+    context = dict(create_default_context())
+    persons = Person.objects.all()
+    context['persons'] = persons
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    context['user'] = user
+    context['form'] = form
+    return render(request, "mainapp/add_movie.html", context)
 
 
 def get_rating_in_stars_list(rating):

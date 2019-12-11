@@ -1,0 +1,15 @@
+{% extends 'mainapp/wrapper.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                {{ form.as_p }}
+            </fieldset>
+                <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

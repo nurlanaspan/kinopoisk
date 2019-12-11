@@ -4,7 +4,12 @@
 <div id="wrapper">
     <div id="movieTitle"><h2>{{ movie.movie_name }}</h2></div>
     <div id="movieContent">
-        <div id="moviePhoto"><img src="{% static movie.movie_url_image %}" alt="Djoker" width="283px" height="390px">
+        <div id="moviePhoto">
+            {% if movie.movie_image %}
+            <img src="{{ movie.movie_image.url }}" alt="Djoker" width="283px" height="390px">
+            {% else %}
+            <img src="{% static movie.movie_url_image %}" alt="Djoker" width="283px" height="390px">
+            {% endif %}
         </div>
         <div id="movieDescription"><p>{{ movie.movie_desctiption }}</p>
             <p>

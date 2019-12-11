@@ -31,6 +31,7 @@ class User(models.Model):
     user_url_image = models.CharField(max_length=1000, default='mainapp\images\defaultuser.png')
     user_role = models.CharField(max_length=32, default='user')
     user_status = models.CharField(max_length=16, default='not banned')
+    user_image = models.ImageField(blank=True, null=True, default=None, upload_to="images/users")
 
 
 class Report(models.Model):
@@ -51,11 +52,11 @@ class Category(models.Model):
 
 class Movie(models.Model):
     movie_name = models.CharField(max_length=100)
-    movie_desctiption = models.TextField()
-    movie_main_rating = models.FloatField()
-    movie_user_rating = models.FloatField()
-    movie_critics_raing = models.FloatField()
-    movie_url_image = models.CharField(max_length=1000)
+    movie_desctiption = models.TextField(default=0.0)
+    movie_main_rating = models.FloatField(default=0.0)
+    movie_user_rating = models.FloatField(default=0.0)
+    movie_critics_raing = models.FloatField(default=0.0)
+    movie_url_image = models.CharField(max_length=1000, blank=True, null=True, default=None)
     movie_url_trailer = models.CharField(max_length=1000)
     movie_country = models.ManyToManyField(Country)
     movie_budjet = models.FloatField()
@@ -67,6 +68,7 @@ class Movie(models.Model):
     movie_commented_users = models.ManyToManyField(User, through="Comment", related_name="Comments")
     movie_genres = models.ManyToManyField(Genre)
     movie_categories = models.ManyToManyField(Category)
+    movie_image = models.ImageField(blank=True, null=True, default=None, upload_to="images/movies")
 
     def __str__(self):
         return self.movie_name
