@@ -24,7 +24,7 @@
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
 								<div class="w3l-movie-text">
-									<h6><a href="{% url 'mainapp:movie' item.0.id %}">{{item.0.movie.movie_name}}</a></h6>
+                                    <h6 style="width: 100%; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="{% url 'mainapp:movie' item.0.id %}">{{item.0.movie_name}}</a></h6>
 								</div>
 								<div class="mid-2 agile_mid_2_home">
 									<p>{{item.0.movie_date}}</p>
