@@ -323,14 +323,17 @@ def user(request, userx_id):
             image = form.cleaned_data.get("image")
             user.user_image = image
             user.save()
+            return HttpResponseRedirect(reverse('mainapp:user', args=(userx.id,)))
     context['form'] = UploadImageForm()
 
-    comments = Comment.objects.filter(comment_user=user)
+    comments = Comment.objects.filter(comment_user=userx)
     counter = 0
     for comment in comments:
         counter += 1
         counter += len(comment.comment_liked_users.all()) * 2
-    counter -= len(Report.objects.filter(report_to_user=user)) * 2
+    counter -= len(Report.objects.filter(report_to_user=userx)) * 2
+    userx.user_score = counter
+    userx.save()
     context['counter'] = counter
     return render(request, "mainapp/user.html", context)
 

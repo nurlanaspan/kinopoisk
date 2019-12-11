@@ -32,6 +32,7 @@ class User(models.Model):
     user_role = models.CharField(max_length=32, default='user')
     user_status = models.CharField(max_length=16, default='not banned')
     user_image = models.ImageField(blank=True, null=True, default=None, upload_to="images/users")
+    user_score = models.IntegerField(blank=True, null=True, default=0)
 
 
 class Report(models.Model):

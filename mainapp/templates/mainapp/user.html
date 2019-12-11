@@ -20,6 +20,17 @@
           <p>
             <strong>Имя: </strong>{{ userx.user_name }}<br>
             <strong>Фамилия: </strong><a href="#">{{userx.user_surname}}</a><br>
+			  {% if counter <= 5 %}
+			  	<strong>Дитя</strong><br>
+			  {% elif counter <= 10 %}
+				<strong>Ученик</strong><br>
+			  {% elif counter <= 15 %}
+				<strong>Ниндзя</strong><br>
+			  {% elif counter <= 20 %}
+				<strong>Мастер</strong><br>
+			  {% else %}
+				<strong>БОГ</strong><br>
+			  {% endif %}
 			 <strong>Очки: </strong> {{counter}}<br>
             <strong style='color:green'>{{userx.user_role}}</strong>
           </p>

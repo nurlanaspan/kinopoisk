@@ -161,7 +161,22 @@
             <p><strong>Комментарии: </strong></p>
             {% for comment in comments %}
             <div style="padding-top: 50px; width: 90%; margin-right: auto; margin-left: auto">
-                <strong><a href="{% url 'mainapp:user' comment.comment_user.id %}"><span style="color: #ddd;">Пользователь: </span>{{ comment.comment_user.user_name }}</a></strong>
+                <strong><a href="{% url 'mainapp:user' comment.comment_user.id %}">
+                    <span>
+                        [
+                        {% if comment.comment_user.user_score <= 5 %}
+			  	            <strong>Дитя </strong>
+			            {% elif comment.comment_user.user_score <= 10 %}
+				            <strong>Ученик </strong>
+			            {% elif comment.comment_user.user_score <= 15 %}
+				            <strong>Ниндзя </strong>
+			            {% elif comment.comment_user.user_score <= 20 %}
+				            <strong>Мастер </strong>
+			            {% else %}
+				            <strong>БОГ </strong>
+			            {% endif %}
+                        ]
+                    </span>{{ comment.comment_user.user_name }}</a></strong>
                 <p> > {{ comment.comment_description }}</p>
                 <p style="font-size: 10px; color: #ddd">Дата: {{comment.comment_date}}</p>
                 {% if user.user_role == 'admin' or comment.comment_user.id == user.id %}
