@@ -541,6 +541,25 @@ def add_new_movie(request):
     return render(request, "mainapp/add_movie.html", context)
 
 
+def add_new_category(request):
+    form = CreateCategoryForm(request.POST or None, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return render(request, 'mainapp/add_category.html', {'form': form})
+    context = dict(create_default_context())
+    persons = Person.objects.all()
+    context['persons'] = persons
+    user = None
+    try:
+        user = User.objects.get(pk=request.session['user_id'])
+    except:
+        pass
+    context['user'] = user
+    context['form'] = form
+    return render(request, 'mainapp/add_category.html', context)
+
+
 def get_rating_in_stars_list(rating):
     counter = int(rating)
     stars = [2 for i in range(counter)]

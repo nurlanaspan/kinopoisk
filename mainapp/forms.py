@@ -23,3 +23,12 @@ class CreateMovieForm(forms.ModelForm):
             'movie_categories',
             'movie_image',
         ]
+
+
+class CreateCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = [
+            'category_name',
+            'category_order_by_parameter',
+        ]

@@ -32,6 +32,7 @@ urlpatterns = [
     path('movies_by_person/<int:person_id>', views.movies_by_person, name="movies_by_person"),
     path('random_movie', views.random_movie, name="random_movie"),
     path('add_new_movie', views.add_new_movie, name='add_new_movie'),
+    path('add_new_category', views.add_new_category, name='add_new_category'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

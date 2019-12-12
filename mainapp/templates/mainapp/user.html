@@ -54,7 +54,8 @@
 	              <input type="submit" value="Забанить" style="background: red; color: white; border: none; padding: 10px;">
 							</form>
 					{% endif %}
-			  	<a href="{% url 'mainapp:add_new_movie' %}"> Добавить новый фильм </a>
+			  	<a href="{% url 'mainapp:add_new_movie' %}"> Добавить новый фильм </a><br>
+                <a href="{% url 'mainapp:add_new_category' %}"> Добавить новую категорию </a>
 			  {% endif %}
 			  {% if userx != user %}
 					{% if reported %}
